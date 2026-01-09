@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>GothAlienBoy – Cyber Escape</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: #020b0a;
+  overflow: hidden;
+  font-family: monospace;
+}
+
+#game {
+  width: 100vw;
+  height: 100vh;
+}
+
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+  touch-action: none;
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.min.js"></script>
+</head>
+
+<body>
+<div id="game"></div>
+
+<script>
+/* ================= CONFIG ================= */
+
+const WIDTH = 360;
+const HEIGHT = 640;
+
+const config = {
+  type: Phaser.AUTO,
+  parent: "game",
+  width: WIDTH,
+  height: HEIGHT,
+  scale: {
+    mode: Phaser.Scale.FIT,
+    autoCenter: Phaser.Scale.CENTER_BOTH
+  },
+  physics: {
+    default: "arcade",
+    arcade: { gravity: { y: 0 } }
+  },
+  scene: { create, update }
+};
+
+new Phaser.Game(config);
+
+/* ================= STATE ================= */
+
+let player;
+let bullets;
+let enemies;
+let boss = null;
+
+let moveDir = 0;
+let canShoot = true;
+let bossHP = 12;
+let gameOver = false;
+
+/* ================= CREATE ================= */
+
+function create() {
+  // Background
+  this.add.rectangle(0, 0, WIDTH, HEIGHT, 0x031311).setOrigin(0);
+
+  // Grid lines (cyber feel)
+  const grid = this.add.graphics();
+  grid.lineStyle(1, 0x043d38, 0.4);
+  for (let y = 0; y < HEIGHT; y += 40) {
+    grid.lineBetween(0, y, WIDTH, y);
+  }
+
+  // Player (GothAlienBoy placeholder)
+  player = this.add.rectangle(WIDTH / 2, HEIGHT - 80, 32, 32, 0x00ffcc);
+  this.physics.add.existing(player);
+  player.body.setCollideWorldBounds(true);
+
+  bullets = this.physics.add.group();
+  enemies = this.physics.add.group();
+
+  spawnEnemies(this);
+
+  this.physics.add.overlap(bullets, enemies, hitEnemy, null, this);
+
+  createControls(this);
+}
+
+/* ================= UPDATE ================= */
+
+function update() {
+  if (gameOver) return;
+
+  player.body.setVelocityX(moveDir * 200);
+
+  enemies.children.each(e => {
+    if (e) e.y += 0.6;
+  });
+
+  if (boss) boss.y += 0.3;
+}
+
+/* ================= GAME LOGIC ================= */
+
+function spawnEnemies(scene) {
+  for (let i = 0; i < 6; i++) {
+    const e = scene.add.rectangle(40 + i * 50, -40, 26, 26, 0xff3355);
+    scene.physics.add.existing(e);
+    enemies.add(e);
+  }
+}
+
+function shoot(scene) {
+  if (!canShoot || gameOver) return;
+
+  const b = scene.add.rectangle(player.x, player.y - 20, 4, 14, 0x00ffff);
+  scene.physics.add.existing(b);
+  b.body.setVelocityY(-420);
+
+  bullets.add(b);
+
+  canShoot = false;
+  scene.time.delayedCall(250, () => canShoot = true);
+}
+
+function hitEnemy(bullet, enemy) {
+  bullet.destroy();
+  enemy.destroy();
+
+  if (enemies.countActive(true) === 0 && !boss) {
+    spawnBoss(this);
+  }
+}
+
+function spawnBoss(scene) {
+  boss = scene.add.rectangle(WIDTH / 2, -100, 140, 90, 0xff6600);
+  scene.physics.add.existing(boss);
+
+  scene.physics.add.overlap(bullets, boss, hitBoss, null, scene);
+}
+
+function hitBoss(bullet, bossObj) {
+  bullet.destroy();
+  bossHP--;
+
+  bossObj.setFillStyle(bossHP % 2 ? 0xff3300 : 0xff9900);
+
+  if (bossHP <= 0) {
+    bossObj.destroy();
+    endGame(this);
+  }
+}
+
+function endGame(scene) {
+  gameOver = true;
+
+  scene.add.rectangle(0, 0, WIDTH, HEIGHT, 0x000000, 0.85).setOrigin(0);
+
+  scene.add.text(
+    WIDTH / 2,
+    HEIGHT / 2,
+    "SYSTEM BREACHED\nGOTHALIENBOY ESCAPED\nTHE GRID",
+    {
+      fontSize: "18px",
+      color: "#00ffcc",
+      align: "center"
+    }
+  ).setOrigin(0.5);
+}
+
+/* ================= TOUCH CONTROLS ================= */
+
+function createControls(scene) {
+  const style = {
+    fontSize: "24px",
+    backgroundColor: "#111",
+    color: "#00ffcc",
+    padding: { x: 16, y: 8 }
+  };
+
+  const left = scene.add.text(20, HEIGHT - 70, "◀", style).setInteractive();
+  const right = scene.add.text(90, HEIGHT - 70, "▶", style).setInteractive();
+  const fire = scene.add.text(WIDTH - 80, HEIGHT - 70, "🔥", style).setInteractive();
+
+  left.on("pointerdown", () => moveDir = -1);
+  left.on("pointerup", () => moveDir = 0);
+  left.on("pointerout", () => moveDir = 0);
+
+  right.on("pointerdown", () => moveDir = 1);
+  right.on("pointerup", () => moveDir = 0);
+  right.on("pointerout", () => moveDir = 0);
+
+  fire.on("pointerdown", () => shoot(scene));
+}
+</script>
+</body>
+</html>
