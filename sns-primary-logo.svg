@@ -1,0 +1,11 @@
+<svg width="800" height="120" viewBox="0 0 800 120" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="120" fill="white"/>
+  <text x="50%" y="70%"
+        text-anchor="middle"
+        font-family="Arial Black, Impact, sans-serif"
+        font-size="72"
+        letter-spacing="-4"
+        fill="black">
+    SORRYNOTSORRY
+  </text>
+</svg>
