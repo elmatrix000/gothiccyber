@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Motsomalo Holdings (PTY) LTD</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+color:#333;
+scroll-behavior:smooth;
+}
+
+/* HEADER */
+header{
+position:fixed;
+width:100%;
+background:rgba(0,0,0,0.92);
+padding:12px 0;
+z-index:1000;
+backdrop-filter: blur(8px);
+}
+
+.container{
+width:90%;
+max-width:1200px;
+margin:auto;
+}
+
+.nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+height:65px;
+object-fit:contain;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:25px;
+font-weight:500;
+transition:0.3s;
+}
+
+nav a:hover{
+color:#f4b400;
+}
+
+/* HERO */
+.hero{
+height:100vh;
+background:url('https://images.unsplash.com/photo-1503387762-592deb58ef4e') center/cover no-repeat;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+text-align:center;
+position:relative;
+}
+
+.hero::after{
+content:"";
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.65);
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+max-width:800px;
+}
+
+.hero h1{
+font-size:48px;
+margin-bottom:20px;
+}
+
+.btn-primary{
+background:#f4b400;
+padding:14px 30px;
+color:black;
+font-weight:bold;
+border-radius:5px;
+text-decoration:none;
+display:inline-block;
+margin-top:15px;
+}
+
+/* SECTIONS */
+.section{
+padding:100px 0;
+}
+
+.dark{
+background:#1f2c3a;
+color:white;
+}
+
+h2{
+margin-bottom:30px;
+font-size:32px;
+text-align:center;
+}
+
+/* SERVICES */
+.services-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+margin-top:40px;
+}
+
+.service-card{
+background:white;
+color:black;
+padding:30px;
+border-radius:10px;
+transition:0.4s;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+.service-card:hover{
+transform:translateY(-10px);
+}
+
+/* TEAM */
+.team{
+display:flex;
+flex-wrap:wrap;
+gap:30px;
+margin-top:40px;
+}
+
+.card{
+flex:1;
+min-width:250px;
+background:#f4f4f4;
+padding:25px;
+border-radius:10px;
+transition:0.4s;
+}
+
+.card:hover{
+transform:scale(1.05);
+}
+
+/* CONTACT */
+.contact-form{
+display:grid;
+gap:15px;
+margin-top:40px;
+max-width:600px;
+margin-left:auto;
+margin-right:auto;
+}
+
+.contact-form input,
+.contact-form textarea{
+padding:14px;
+border:none;
+border-radius:5px;
+}
+
+.contact-form button{
+padding:14px;
+background:#f4b400;
+border:none;
+font-weight:bold;
+cursor:pointer;
+border-radius:5px;
+}
+
+/* FOOTER */
+footer{
+background:black;
+color:white;
+text-align:center;
+padding:25px;
+}
+
+/* WHATSAPP */
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:15px;
+border-radius:50%;
+text-decoration:none;
+font-size:22px;
+box-shadow:0 5px 20px rgba(0,0,0,0.3);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container nav">
+<img src="logo.PNG" alt="Motsomalo Holdings Logo" class="logo">
+<nav>
+<a href="#about">About</a>
+<a href="#services">Services</a>
+<a href="#management">Management</a>
+<a href="#contact">Get Quote</a>
+</nav>
+</div>
+</header>
+
+<section class="hero">
+<div class="hero-content">
+<h1>Building The Future With Excellence</h1>
+<p>Upmarket Residential & Commercial Construction</p>
+<a href="#contact" class="btn-primary">Request Consultation</a>
+</div>
+</section>
+
+<section id="about" class="section">
+<div class="container">
+<h2>Business Overview</h2>
+<p style="text-align:center; max-width:800px; margin:auto;">
+Motsomalo Holdings specializes in upmarket residential and commercial construction across Gauteng’s West Rand region.
+We contribute towards sustainable poverty alleviation and employment creation through integrated collaboration.
+</p>
+<p style="text-align:center; margin-top:20px;">
+<strong>Enterprise Number:</strong> 2022 / 330016 / 07
+</p>
+</div>
+</section>
+
+<section id="services" class="section dark">
+<div class="container">
+<h2>Our Services</h2>
+<div class="services-grid">
+<div class="service-card">
+<h3>Residential Construction</h3>
+<p>Luxury homes and custom builds.</p>
+</div>
+<div class="service-card">
+<h3>Commercial Projects</h3>
+<p>Office parks and retail developments.</p>
+</div>
+<div class="service-card">
+<h3>Project Management</h3>
+<p>Professional supervision & execution.</p>
+</div>
+<div class="service-card">
+<h3>Renovations</h3>
+<p>Premium upgrades & transformations.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="contact" class="section dark">
+<div class="container">
+<h2>Request A Quote</h2>
+
+<form class="contact-form" id="contactForm">
+<input type="text" id="name" placeholder="Full Name" required>
+<input type="email" id="email" placeholder="Email Address" required>
+<input type="tel" id="phone" placeholder="Phone Number" required>
+<textarea id="message" placeholder="Project Description" required></textarea>
+<button type="submit">Submit Request</button>
+</form>
+
+</div>
+</section>
+
+<footer>
+<p>© 2026 Motsomalo Holdings (PTY) LTD | EST. 2022</p>
+</footer>
+
+<a href="https://wa.me/27789685258" class="whatsapp" target="_blank">💬</a>
+
+<script>
+(function(){
+emailjs.init("kcfQ40TXD-9-ckF5a");
+})();
+
+document.getElementById("contactForm").addEventListener("submit",function(e){
+e.preventDefault();
+
+emailjs.send("service_5o6z66k","template_motsomalo001",{
+from_name:document.getElementById("name").value,
+from_email:document.getElementById("email").value,
+phone:document.getElementById("phone").value,
+message:document.getElementById("message").value
+}).then(function(){
+alert("Request sent successfully!");
+document.getElementById("contactForm").reset();
+},function(error){
+alert("Failed to send. Check EmailJS template settings.");
+console.error(error);
+});
+});
+</script>
+
+</body>
+</html>
