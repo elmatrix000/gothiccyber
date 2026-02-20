@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Motsomalo Holdings (PTY) LTD</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+body{background:#f4f6f9;color:#333;scroll-behavior:smooth;}
+
+/* HEADER */
+header{
+position:fixed;width:100%;top:0;left:0;
+display:flex;justify-content:space-between;align-items:center;
+padding:15px 8%;transition:0.3s;z-index:1000;
+}
+
+header.scrolled{background:#0d1b2a;box-shadow:0 4px 10px rgba(0,0,0,0.2);}
+
+.logo-container{display:flex;align-items:center;}
+.logo-container img{height:45px;margin-right:10px;}
+.logo-text{color:white;font-weight:600;}
+
+nav a{color:white;text-decoration:none;margin-left:20px;font-weight:500;}
+
+/* HERO */
+.hero{
+height:100vh;
+background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+url("https://images.unsplash.com/photo-1503387762-592deb58ef4e");
+background-size:cover;background-position:center;
+display:flex;flex-direction:column;justify-content:center;align-items:center;
+text-align:center;color:white;padding:0 20px;
+}
+
+.hero h1{font-size:42px;margin-bottom:20px;}
+.hero p{max-width:700px;margin-bottom:30px;}
+
+.btn{
+padding:12px 25px;border:none;border-radius:4px;
+cursor:pointer;margin:5px;font-weight:600;
+}
+
+.btn-primary{background:#fca311;color:white;}
+.btn-secondary{background:white;color:#0d1b2a;}
+
+/* SECTION */
+.section{padding:80px 8%;text-align:center;}
+.section h2{margin-bottom:30px;color:#0d1b2a;}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+/* CARD */
+.card{
+background:white;padding:20px;border-radius:8px;
+box-shadow:0 4px 12px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.card:hover{transform:translateY(-5px);}
+
+/* STATS */
+.stats{display:flex;flex-wrap:wrap;justify-content:center;}
+.stat{margin:20px;}
+.stat h3{color:#fca311;font-size:32px;}
+
+/* MAP */
+iframe{width:100%;height:400px;border:0;border-radius:8px;}
+
+/* FORM */
+form{max-width:600px;margin:auto;}
+input,textarea{
+width:100%;padding:12px;margin:10px 0;
+border:1px solid #ccc;border-radius:4px;
+}
+
+/* FOOTER */
+footer{
+background:#0d1b2a;color:white;
+padding:50px 8%;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
+
+.footer-logo{height:60px;margin-bottom:10px;}
+
+footer p{margin:6px 0;font-size:14px;}
+
+.copyright{text-align:center;margin-top:20px;font-size:13px;}
+</style>
+</head>
+
+<body>
+
+<header id="header">
+<div class="logo-container">
+<img src="logo.PNG">
+<div class="logo-text">Motsomalo Holdings</div>
+</div>
+
+<nav>
+<a href="#about">Profile</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+<section class="hero">
+<h1>Building Multi-Sector Excellence</h1>
+<p>Delivering construction, infrastructure, and property development solutions across South Africa.</p>
+<button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView()">Get Quote</button>
+<button class="btn btn-secondary" onclick="document.getElementById('about').scrollIntoView()">Learn More</button>
+</section>
+
+<section class="section" id="about">
+<h2>Company Profile</h2>
+
+<p style="max-width:900px;margin:auto;">
+Motsomalo Holdings (PTY) LTD is a diversified enterprise operating within the construction and infrastructure sector.
+</p>
+
+<br>
+
+<div class="grid">
+<div class="card"><h3>Structural Concrete Construction</h3></div>
+<div class="card"><h3>Road Construction & Repair</h3></div>
+<div class="card"><h3>Mining Infrastructure</h3></div>
+<div class="card"><h3>Bulk Earthworks</h3></div>
+<div class="card"><h3>Concrete Repairs</h3></div>
+<div class="card"><h3>Infrastructure Development</h3></div>
+<div class="card"><h3>Water Treatment Works</h3></div>
+</div>
+</section>
+
+<section class="section">
+<h2>Vision & Mission</h2>
+
+<div class="grid">
+<div class="card">
+<h3>Vision</h3>
+<p>To be a leading construction company in South Africa by 2030.</p>
+</div>
+
+<div class="card">
+<h3>Mission</h3>
+<p>To deliver premium quality services at affordable rates across South Africa.</p>
+</div>
+</div>
+</section>
+
+<section class="section">
+<h2>Core Values</h2>
+
+<div class="grid">
+<div class="card"><h3>Quality</h3></div>
+<div class="card"><h3>Professionalism</h3></div>
+<div class="card"><h3>Integrity</h3></div>
+<div class="card"><h3>Customer Satisfaction</h3></div>
+<div class="card"><h3>Respect & Diversity</h3></div>
+</div>
+</section>
+
+<section class="section">
+<h2>Our Location</h2>
+<iframe src="https://www.google.com/maps?q=3331+Thandekile+Dr,+Kagiso,+Krugersdorp,+1754&output=embed"></iframe>
+</section>
+
+<section class="section" id="contact">
+<h2>Request a Quote</h2>
+
+<form id="contact-form">
+<input type="text" name="name" placeholder="Full Name" required>
+<input type="email" name="email" placeholder="Email Address" required>
+<textarea name="message" placeholder="Project Description" required></textarea>
+<button class="btn btn-primary">Send</button>
+</form>
+</section>
+
+<footer>
+<div class="footer-grid">
+
+<div>
+<img src="logo.PNG" class="footer-logo">
+<p><strong>Motsomalo Holdings (PTY) LTD</strong></p>
+<p>Enterprise Number: 2022 / 330016 / 07</p>
+<p>3331 Thandekile Dr</p>
+<p>Kagiso, Krugersdorp, 1754</p>
+<p>South Africa</p>
+</div>
+
+<div>
+<p><strong>Contact Details</strong></p>
+<p>📧 MzwakheKhumalo91@gmail.com</p>
+<p>📞 +27 78 968 5258</p>
+<p>📞 +27 79 875 1929</p>
+</div>
+
+</div>
+
+<div class="copyright">
+© 2026 Motsomalo Holdings (PTY) LTD. All Rights Reserved.
+</div>
+</footer>
+
+<script>
+window.addEventListener("scroll",function(){
+document.getElementById("header").classList.toggle("scrolled",window.scrollY>50);
+});
+
+(function(){
+emailjs.init("kcfQ4oTXD-9-ckF5a");
+})();
+
+document.getElementById("contact-form")
+.addEventListener("submit",function(e){
+e.preventDefault();
+
+emailjs.sendForm("service_5o6z66k","template_imj3sps",this)
+.then(function(){
+alert("Request sent successfully!");
+},function(){
+alert("Failed to send.");
+});
+});
+</script>
+
+</body>
+</html>
