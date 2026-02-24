@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Motsomalo Holdings (PTY) LTD</title>
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+(function(){
+    emailjs.init("kcfQ40TXD-9-ckF5a");
+})();
+</script>
+</head>
+
+<body>
+
+<header class="premium-header">
+    <div class="header-container">
+        <img src="logo.PNG" class="logo">
+        <div>
+            <h1>Motsomalo Holdings (PTY) LTD</h1>
+            <p>Enterprise Number: 2022 / 330016 / 07</p>
+        </div>
+    </div>
+</header>
+
+<section class="hero">
+    <h2>Engineering Excellence. Infrastructure Innovation.</h2>
+</section>
+
+<!-- SANDILE PRIMARY SCHOOL -->
+<section class="project-section">
+    <h2>Sandile Primary School</h2>
+    <p>Complete infrastructure development & structural works</p>
+
+    <div class="slider-container">
+        <button class="slide-btn prev" onclick="scrollSlider('slider1', -1)">❮</button>
+
+        <div class="slider" id="slider1">
+            <img src="project1.JPG">
+            <img src="project2.JPG">
+            <img src="project3.JPG">
+            <img src="project4.JPG">
+            <img src="project5.JPG">
+        </div>
+
+        <button class="slide-btn next" onclick="scrollSlider('slider1', 1)">❯</button>
+    </div>
+</section>
+
+<!-- COMMERCIAL PROJECTS -->
+<section class="project-section dark">
+    <h2>Commercial & Civil Portfolio</h2>
+    <p>Mining infrastructure, bulk earthworks & structural developments</p>
+
+    <div class="slider-container">
+        <button class="slide-btn prev" onclick="scrollSlider('slider2', -1)">❮</button>
+
+        <div class="slider" id="slider2">
+            <img src="project6.JPG.jpg">
+            <img src="project7.JPG.jpg">
+            <img src="project8.JPG.jpg">
+            <img src="project9.JPG.jpg">
+            <img src="project10.JPG.jpg">
+            <img src="project11.JPG.jpg">
+            <img src="project12.JPG.jpg">
+            <img src="project13.JPG.jpg">
+            <img src="project14.JPG.jpg">
+            <img src="project15.JPG.jpg">
+            <img src="project16.JPG.jpg">
+        </div>
+
+        <button class="slide-btn next" onclick="scrollSlider('slider2', 1)">❯</button>
+    </div>
+</section>
+
+<!-- CONSULTATION -->
+<section class="consultation">
+    <h2>Request Consultation</h2>
+
+    <form id="consultation-form">
+        <input type="text" name="from_name" placeholder="Full Name" required>
+        <input type="email" name="from_email" placeholder="Email Address" required>
+        <input type="tel" name="phone" placeholder="Phone Number" required>
+        <textarea name="message" placeholder="Describe your project..." required></textarea>
+        <button type="submit">Send Consultation Request</button>
+    </form>
+</section>
+
+<footer>
+    <p>© 2026 Motsomalo Holdings (PTY) LTD</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
