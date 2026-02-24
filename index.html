@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Motsomalo Holdings (PTY) LTD</title>
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+(function(){
+    emailjs.init("kcfQ40TXD-9-ckF5a");
+})();
+</script>
+</head>
+
+<body>
+
+<header class="premium-header">
+    <div class="header-container">
+        <img src="logo.PNG" class="logo">
+        <h1>Motsomalo Holdings (PTY) LTD</h1>
+    </div>
+</header>
+
+<section class="hero">
+    <h2>Enterprise Infrastructure & Construction Solutions</h2>
+</section>
+
+<!-- COUNTERS -->
+<section class="stats">
+    <div class="stat-box">
+        <h3 class="counter" data-target="16">0</h3>
+        <p>Completed Projects</p>
+    </div>
+    <div class="stat-box">
+        <h3 class="counter" data-target="8">0</h3>
+        <p>Core Services</p>
+    </div>
+    <div class="stat-box">
+        <h3 class="counter" data-target="100">0</h3>
+        <p>% Client Satisfaction</p>
+    </div>
+</section>
+
+<!-- PROJECT SECTION 1 -->
+<section class="project-section">
+    <h2>Sandile Primary School</h2>
+    <p>Structural concrete construction and full infrastructure development.</p>
+
+    <div class="slider">
+        <img src="images/project1.JPG" onclick="openModal(this.src)">
+        <img src="images/project2.JPG" onclick="openModal(this.src)">
+        <img src="images/project3.JPG" onclick="openModal(this.src)">
+        <img src="images/project4.JPG" onclick="openModal(this.src)">
+        <img src="images/project5.JPG" onclick="openModal(this.src)">
+    </div>
+</section>
+
+<!-- PROJECT SECTION 2 -->
+<section class="project-section dark">
+    <h2>Consultation & Infrastructure Projects</h2>
+    <p>Road construction, mining infrastructure, bulk earthworks & engineering consultation.</p>
+
+    <div class="slider">
+        <img src="images/project6.JPG.jpg" onclick="openModal(this.src)">
+        <img src="images/project7.JPG.jpg" onclick="openModal(this.src)">
+        <img src="images/project8.JPG.jpg" onclick="openModal(this.src)">
+        <img src="images/project9.JPG.jpg" onclick="openModal(this.src)">
+        <img src="images/project10.JPG.jpg" onclick="openModal(this.src)">
+        <img src="images/project11.JPG.jpg" onclick="openModal(this.src)">
+        <img src="images/project12.JPG.jpg" onclick="openModal(this.src)">
+        <img src="images/project13.JPG.jpg" onclick="openModal(this.src)">
+        <img src="images/project14.JPG.jpg" onclick="openModal(this.src)">
+        <img src="images/project15.JPG.jpg" onclick="openModal(this.src)">
+        <img src="images/project16.JPG.jpg" onclick="openModal(this.src)">
+    </div>
+</section>
+
+<!-- GOOGLE MAP -->
+<section class="map-section">
+    <h2>Our Location</h2>
+    <iframe 
+        src="https://www.google.com/maps?q=-26.1609113,27.7855546&z=17&output=embed"
+        loading="lazy">
+    </iframe>
+</section>
+
+<!-- CONSULTATION -->
+<section class="consultation">
+    <h2>Request a Consultation</h2>
+
+    <form id="consultForm">
+        <input type="text" name="user_name" placeholder="Full Name" required>
+        <input type="email" name="user_email" placeholder="Email Address" required>
+        <textarea name="message" placeholder="Describe your project..." required></textarea>
+        <button type="submit">Send Consultation Request</button>
+    </form>
+</section>
+
+<footer>
+    <p>Motsomalo Holdings (PTY) LTD</p>
+    <p>Enterprise Number: 2022 / 330016 / 07</p>
+    <p>3331 Thandekile Dr, Kagiso, Krugersdorp, 1754</p>
+</footer>
+
+<!-- FLOATING BUTTONS -->
+<a href="https://wa.me/27789685258" class="whatsapp-float" target="_blank">WA</a>
+<a href="tel:0789685258" class="call-float">Call</a>
+
+<!-- IMAGE MODAL -->
+<div id="imageModal" class="modal" onclick="closeModal()">
+    <img id="modalImg">
+</div>
+
+<script src="script.js"></script>
+
+<script>
+document.getElementById("consultForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    emailjs.sendForm("service_506z66k", "template_enterprise01", this)
+    .then(function(){
+        alert("Consultation request sent successfully.");
+    }, function(){
+        alert("Failed to send.");
+    });
+});
+</script>
+
+</body>
+</html>
