@@ -1,253 +1,351 @@
 /* ==========================================
-   ADDITIONAL STYLES FOR UPGRADED HTML
+   WHATSAPP NUMBER DISPLAY & HERO BUTTONS
    ========================================== */
 
-/* Skip Link for Accessibility */
-.skip-link {
-    position: absolute;
-    top: -40px;
-    left: 0;
-    background: var(--primary);
-    color: white;
-    padding: 8px;
-    text-decoration: none;
-    z-index: 10000;
-    border-radius: 0 0 4px 0;
-}
-
-.skip-link:focus {
-    top: 0;
-}
-
-/* Visually Hidden (for screen readers) */
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
-}
-
-/* Help Text */
-.help-text {
-    display: block;
-    font-size: 0.875rem;
-    color: var(--text-muted);
-    margin-top: 0.5rem;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: all var(--transition-fast);
-}
-
-.form-group:focus-within .help-text {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Scroll Indicator */
-.scroll-indicator {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--text-muted);
-    font-size: 0.875rem;
-    animation: bounce 2s infinite;
-}
-
-.mouse {
-    width: 26px;
-    height: 40px;
-    border: 2px solid var(--text-muted);
-    border-radius: 13px;
-    position: relative;
-}
-
-.wheel {
-    width: 4px;
-    height: 8px;
-    background: var(--primary);
-    border-radius: 2px;
-    position: absolute;
-    top: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: scroll 1.5s infinite;
-}
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-    40% { transform: translateX(-50%) translateY(-10px); }
-    60% { transform: translateX(-50%) translateY(-5px); }
-}
-
-@keyframes scroll {
-    0% { opacity: 1; top: 8px; }
-    100% { opacity: 0; top: 20px; }
-}
-
-/* Section Intro */
-.section-intro {
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto 2rem;
-    font-size: 1.125rem;
-}
-
-/* Service Cards Enhancement */
-.service {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-}
-
-.service i {
-    font-size: 2.5rem;
-    color: var(--primary);
-    margin-bottom: 0.5rem;
-}
-
-.service h3 {
-    margin: 0;
-    font-size: 1.25rem;
-}
-
-.service p {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    margin: 0;
-}
-
-/* Map Container */
-.map-container {
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-xl);
-    margin-bottom: 1.5rem;
-}
-
-.location-info {
-    text-align: center;
-    color: var(--text-secondary);
-}
-
-.location-info address {
-    font-style: normal;
-    line-height: 2;
-}
-
-.location-info i {
-    color: var(--primary);
-    margin-right: 0.5rem;
-    width: 20px;
-}
-
-/* Form Enhancements */
-select {
-    width: 100%;
-    padding: 1rem 1.25rem;
-    background: var(--bg-darker);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--radius-md);
-    color: var(--text-primary);
-    font-family: inherit;
-    font-size: 1rem;
-    cursor: pointer;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    padding-right: 3rem;
-}
-
-select:focus {
-    outline: none;
-    border-color: var(--primary);
-}
-
-select option {
-    background: var(--bg-darker);
-    color: var(--text-primary);
-}
-
-/* Secondary Button */
-.btn.secondary {
-    background: transparent;
-    border: 2px solid var(--primary);
-    color: var(--primary);
-}
-
-.btn.secondary:hover {
-    background: var(--primary);
-    color: white;
-}
-
-/* WhatsApp Large Button */
-.btn.whatsapp-large {
-    background: #25d366;
-    color: white;
-}
-
-.btn.whatsapp-large:hover {
-    background: #128c7e;
-    transform: translateY(-2px);
-}
-
-/* Contact Alternatives */
-.contact-alternatives {
-    text-align: center;
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.contact-alternatives p {
-    color: var(--text-muted);
-    margin-bottom: 1rem;
-}
-
-.contact-buttons {
+/* Hero Contact Buttons */
+.hero-contact {
     display: flex;
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
+    margin: 2rem 0;
 }
 
-/* Footer Enhancement */
+.btn-large {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 2rem;
+    min-width: 180px;
+    text-align: center;
+    gap: 0.25rem;
+}
+
+.btn-large i {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.btn-large span {
+    font-size: 0.875rem;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+.btn-large strong {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.btn.whatsapp {
+    background: #25d366;
+    box-shadow: 0 4px 14px 0 rgba(37, 211, 102, 0.39);
+}
+
+.btn.whatsapp:hover {
+    background: #128c7e;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.23);
+}
+
+/* WhatsApp Number Display in Floating Buttons */
+.floating {
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+    z-index: 999;
+}
+
+.wa-number-display {
+    background: white;
+    color: #128c7e;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    opacity: 0;
+    transform: translateY(10px) scale(0.9);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+.wa-number-display::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    right: 20px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid white;
+}
+
+.wa-number-display.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.wa-number {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #075e54;
+}
+
+.wa-label {
+    font-size: 0.75rem;
+    color: #128c7e;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Call Button Enhancement */
+.call-btn {
+    background: linear-gradient(135deg, #374151, #1f2937);
+    position: relative;
+}
+
+.call-btn::before {
+    content: '+27 (78) 968-5258';
+    position: absolute;
+    right: 70px;
+    background: white;
+    color: #1f2937;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    box-shadow: var(--shadow-md);
+}
+
+.call-btn::after {
+    content: '';
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 6px solid white;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.call-btn:hover::before,
+.call-btn:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.call-btn:hover::after {
+    right: 64px;
+}
+
+/* ==========================================
+   CONTACT CARDS IN CONTACT SECTION
+   ========================================== */
+
+.or-divider {
+    text-align: center;
+    margin: 3rem 0 2rem;
+    position: relative;
+}
+
+.or-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.or-divider span {
+    background: var(--bg-dark);
+    padding: 0 1rem;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    position: relative;
+}
+
+.contact-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.contact-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all var(--transition-base);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    background: var(--bg-card-hover);
+    border-color: var(--primary);
+    box-shadow: var(--shadow-xl);
+}
+
+.contact-card i {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.contact-card.whatsapp i {
+    color: #25d366;
+}
+
+.contact-card.whatsapp:hover {
+    border-color: #25d366;
+}
+
+.contact-card .label {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.contact-card .number {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    word-break: break-all;
+}
+
+/* ==========================================
+   FORM IMPROVEMENTS
+   ========================================== */
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.btn-full {
+    width: 100%;
+    justify-content: center;
+    padding: 1rem;
+    font-size: 1.1rem;
+}
+
+/* Field Error States */
+input.error, textarea.error, select.error {
+    border-color: var(--error) !important;
+    background-color: rgba(239, 68, 68, 0.05);
+}
+
+.field-error {
+    color: var(--error);
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.field-error::before {
+    content: '\f071';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 0.75rem;
+}
+
+/* Notification Close Button */
+.notification-close {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    padding: 0.25rem;
+    margin-left: 1rem;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.notification-close:hover {
+    opacity: 1;
+}
+
+/* ==========================================
+   FOOTER ENHANCEMENTS
+   ========================================== */
+
 .footer-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
     margin-bottom: 2rem;
     text-align: left;
+    align-items: start;
 }
 
 .footer-brand {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     gap: 0.5rem;
 }
 
-.footer-brand img {
-    border-radius: var(--radius-md);
-    margin-bottom: 0.5rem;
+.company-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
 }
 
 .footer-contact p {
-    margin-bottom: 0.75rem;
+    margin: 0;
     display: flex;
     align-items: center;
     gap: 0.75rem;
+}
+
+.footer-contact i {
+    color: var(--primary);
+    width: 20px;
+    text-align: center;
 }
 
 .footer-contact a {
@@ -266,10 +364,38 @@ select option {
     text-align: center;
 }
 
-/* Responsive adjustments */
+.current-year {
+    color: inherit;
+}
+
+/* ==========================================
+   RESPONSIVE ADJUSTMENTS
+   ========================================== */
+
 @media (max-width: 768px) {
+    .hero-contact {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-large {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    
+    .contact-cards {
+        grid-template-columns: 1fr;
+    }
+    
     .footer-content {
+        grid-template-columns: 1fr;
         text-align: center;
+        gap: 2rem;
     }
     
     .footer-brand {
@@ -280,13 +406,33 @@ select option {
         justify-content: center;
     }
     
-    .contact-buttons {
-        flex-direction: column;
-        align-items: center;
+    /* Hide tooltips on mobile */
+    .call-btn::before,
+    .call-btn::after {
+        display: none;
     }
     
-    .contact-buttons .btn {
-        width: 100%;
-        max-width: 300px;
+    .wa-number-display {
+        right: 0;
+        left: 0;
+        margin: 0 auto;
+        width: max-content;
+    }
+    
+    .wa-number-display::after {
+        right: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .floating {
+        right: 1rem;
+        bottom: 1rem;
+    }
+    
+    .call-btn, .wa-btn {
+        width: 55px;
+        height: 55px;
+        font-size: 1.25rem;
     }
 }
