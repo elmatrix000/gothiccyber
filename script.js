@@ -1,26 +1,53 @@
-// Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
+    initHeader();
+    initMobileMenu();
     initSwipers();
-    initCounters();
-    initNavigation();
+    initProjectTabs();
     initEmailJS();
+    initFab();
 });
 
-// Contact Info
-const PHONE = '+27789685258';
-const WHATSAPP = '+27789685258';
-const EMAIL = 'MzwakheKhumalo91@gmail.com';
+// Header scroll effect
+function initHeader() {
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+}
 
-// Swiper Sliders
+// Mobile menu
+function initMobileMenu() {
+    const toggle = document.getElementById('mobileToggle');
+    const nav = document.getElementById('nav');
+    
+    toggle.addEventListener('click', () => {
+        toggle.classList.toggle('active');
+        nav.classList.toggle('active');
+    });
+    
+    // Close on link click
+    nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            toggle.classList.remove('active');
+            nav.classList.remove('active');
+        });
+    });
+}
+
+// Swipers
 function initSwipers() {
     if (typeof Swiper === 'undefined') return;
     
     new Swiper('.projectSwiper1', {
         loop: true,
-        autoplay: { delay: 3000 },
+        autoplay: { delay: 4000 },
         slidesPerView: 1,
         spaceBetween: 20,
-        pagination: { clickable: true, el: '.swiper-pagination' },
+        pagination: { el: '.swiper-pagination', clickable: true },
         navigation: {
             nextEl: '.swiper-button-next-1',
             prevEl: '.swiper-button-prev-1'
@@ -29,10 +56,10 @@ function initSwipers() {
 
     new Swiper('.projectSwiper2', {
         loop: true,
-        autoplay: { delay: 3000 },
+        autoplay: { delay: 4000 },
         slidesPerView: 1,
         spaceBetween: 20,
-        pagination: { clickable: true, el: '.swiper-pagination' },
+        pagination: { el: '.swiper-pagination', clickable: true },
         navigation: {
             nextEl: '.swiper-button-next-2',
             prevEl: '.swiper-button-prev-2'
@@ -40,87 +67,71 @@ function initSwipers() {
     });
 }
 
-// Counter Animation
-function initCounters() {
-    const counters = document.querySelectorAll('.counter');
+// Project tabs
+function initProjectTabs() {
+    const tabs = document.querySelectorAll('.tab-btn');
+    const contents = document.querySelectorAll('.tab-content');
     
-    counters.forEach(counter => {
-        const target = +counter.getAttribute('data-target');
-        const duration = 2000;
-        const increment = target / 100;
-        let current = 0;
-        
-        const updateCounter = () => {
-            if (current < target) {
-                current += increment;
-                counter.innerText = Math.ceil(current);
-                setTimeout(updateCounter, 20);
-            } else {
-                counter.innerText = target;
-            }
-        };
-        
-        updateCounter();
-    });
-}
-
-// Mobile Navigation
-function initNavigation() {
-    const menuBtn = document.querySelector('.mobile-menu-btn');
-    const nav = document.querySelector('.nav');
-    
-    if (menuBtn && nav) {
-        menuBtn.addEventListener('click', () => {
-            nav.classList.toggle('nav-open');
-            menuBtn.classList.toggle('active');
-        });
-    }
-    
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                nav.classList.remove('nav-open');
-                menuBtn.classList.remove('active');
-            }
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const target = tab.dataset.tab;
+            
+            tabs.forEach(t => t.classList.remove('active'));
+            contents.forEach(c => c.classList.remove('active'));
+            
+            tab.classList.add('active');
+            document.getElementById('tab-' + target).classList.add('active');
         });
     });
 }
 
-// EmailJS Contact Form
+// EmailJS
 function initEmailJS() {
-    if (typeof emailjs === 'undefined') {
-        console.log('EmailJS not loaded');
-        return;
-    }
+    if (typeof emailjs === 'undefined') return;
     
     emailjs.init("kcfQ4oTXD-9-ckF5a");
     
-    const form = document.getElementById("contact-form");
+    const form = document.getElementById('contact-form');
     if (!form) return;
     
-    form.addEventListener("submit", function(e) {
+    form.addEventListener('submit', function(e) {
         e.preventDefault();
         
         const btn = form.querySelector('button[type="submit"]');
         const originalText = btn.innerHTML;
-        btn.innerHTML = 'Sending...';
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         btn.disabled = true;
         
         emailjs.sendForm("service_5o6z66k", "template_imj3sps", this)
             .then(() => {
-                alert("Message sent successfully!");
+                alert('Message sent successfully! We will contact you soon.');
                 form.reset();
-            }, (error) => {
-                alert("Failed to send. Please call " + PHONE);
-                console.log(error);
+            }, (err) => {
+                alert('Failed to send. Please call us at +27 (78) 968-5258');
+                console.log(err);
             })
             .finally(() => {
                 btn.innerHTML = originalText;
                 btn.disabled = false;
             });
+    });
+}
+
+// FAB (Floating Action Button)
+function initFab() {
+    const fab = document.getElementById('fabMain');
+    const container = document.querySelector('.fab-container');
+    
+    fab.addEventListener('click', () => {
+        container.classList.toggle('active');
+        fab.classList.toggle('active');
+    });
+    
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!container.contains(e.target)) {
+            container.classList.remove('active');
+            fab.classList.remove('active');
+        }
     });
 }
