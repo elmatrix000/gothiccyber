@@ -1,200 +1,436 @@
-// Project images array
-const projectImages = [
-    'project1.JPG', 'project2.JPG', 'project3.JPG', 'project4.JPG',
-    'project5.JPG', 'project6.JPG.jpg', 'project7.JPG.jpg', 'project8.JPG.jpg',
-    'project9.JPG.jpg', 'project10.JPG.jpg', 'project11.JPG.jpg', 'project12.JPG.jpg',
-    'project13.JPG.jpg', 'project14.JPG.jpg', 'project15.JPG.jpg', 'project16.JPG.jpg'
-];
-
-const projectTitles = [
-    'Commercial Building Project',
-    'Road Infrastructure Development',
-    'Mining Facility Construction',
-    'Residential Complex',
-    'Industrial Warehouse',
-    'Bridge Construction',
-    'School Infrastructure',
-    'Hospital Development',
-    'Water Treatment Plant',
-    'Shopping Mall Construction',
-    'Office Building',
-    'Factory Construction',
-    'Highway Expansion',
-    'Dam Construction',
-    'Airport Runway',
-    'Power Station'
-];
-
-let currentSlide = 0;
-
-// Initialize
-document.addEventListener('DOMContentLoaded', () => {
-    initSlider();
-    initCounters();
-    hideLoader();
-});
-
-// Hide loader
-function hideLoader() {
-    setTimeout(() => {
-        document.getElementById('loader').classList.add('hidden');
-    }, 500);
-}
-
-// Initialize project slider
-function initSlider() {
-    const slider = document.getElementById('projectsSlider');
-    const dotsContainer = document.getElementById('sliderDots');
-    const thumbsContainer = document.getElementById('projectsGrid');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Motsomalo Holdings (PTY) LTD - Premium Infrastructure and Construction Solutions across South Africa. Structural concrete, road construction, mining infrastructure, and earthworks.">
+    <meta name="keywords" content="construction company South Africa, infrastructure development, mining infrastructure, road construction, structural concrete, earthworks, Motsomalo Holdings">
+    <meta name="author" content="Motsomalo Holdings (PTY) LTD">
     
-    // Create slides
-    projectImages.forEach((img, index) => {
-        const slide = document.createElement('div');
-        slide.className = 'project-slide';
-        slide.innerHTML = `
-            <img src="${img}" alt="${projectTitles[index]}" onerror="this.src='project1.JPG'">
-            <div class="project-slide-overlay">
-                <span class="project-tag">Construction</span>
-                <h3>${projectTitles[index]}</h3>
-                <p>Professional construction and infrastructure development</p>
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://motsomaloholdings.co.za">
+    <meta property="og:title" content="Motsomalo Holdings (PTY) LTD | Engineering Excellence">
+    <meta property="og:description" content="Premium Infrastructure and Construction Solutions Across South Africa">
+    <meta property="og:image" content="https://motsomaloholdings.co.za/project1.JPG">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://motsomaloholdings.co.za">
+    <meta property="twitter:title" content="Motsomalo Holdings (PTY) LTD | Engineering Excellence">
+    <meta property="twitter:description" content="Premium Infrastructure and Construction Solutions Across South Africa">
+    <meta property="twitter:image" content="https://motsomaloholdings.co.za/project1.JPG">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logo.PNG">
+    <link rel="apple-touch-icon" href="logo.PNG">
+    
+    <title>Motsomalo Holdings (PTY) LTD | Engineering Excellence</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css?v=31">
+</head>
+
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="container header-flex">
+            <div class="logo-area">
+                <img src="logo.PNG" alt="Motsomalo Holdings Logo" class="logo" width="60" height="60">
+                <div>
+                    <h1>Motsomalo Holdings (PTY) LTD</h1>
+                    <p>Enterprise Number: 2022 / 330016 / 07</p>
+                </div>
             </div>
-        `;
-        slider.appendChild(slide);
-        
-        // Create dot
-        const dot = document.createElement('div');
-        dot.className = 'slider-dot' + (index === 0 ? ' active' : '');
-        dot.onclick = () => goToSlide(index);
-        dotsContainer.appendChild(dot);
-        
-        // Create thumbnail
-        if (index < 8) {
-            const thumb = document.createElement('div');
-            thumb.className = 'project-thumb' + (index === 0 ? ' active' : '');
-            thumb.innerHTML = `<img src="${img}" alt="${projectTitles[index]}">`;
-            thumb.onclick = () => goToSlide(index);
-            thumbsContainer.appendChild(thumb);
-        }
-    });
-    
-    // Auto slide
-    setInterval(() => {
-        changeSlide(1);
-    }, 5000);
-}
 
-// Change slide
-function changeSlide(direction) {
-    currentSlide = (currentSlide + direction + projectImages.length) % projectImages.length;
-    updateSlider();
-}
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
 
-// Go to specific slide
-function goToSlide(index) {
-    currentSlide = index;
-    updateSlider();
-}
+            <nav class="nav" role="navigation" aria-label="Main navigation">
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </nav>
 
-// Update slider display
-function updateSlider() {
-    const slider = document.getElementById('projectsSlider');
-    const dots = document.querySelectorAll('.slider-dot');
-    const thumbs = document.querySelectorAll('.project-thumb');
-    
-    slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-    slider.style.transition = 'transform 0.5s ease';
-    
-    dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentSlide);
-    });
-    
-    thumbs.forEach((thumb, index) => {
-        thumb.classList.toggle('active', index === currentSlide);
-    });
-}
+            <div class="header-buttons">
+                <a href="tel:+27789685258" class="btn call" aria-label="Call us">
+                    <i class="fas fa-phone" aria-hidden="true"></i>
+                </a>
+                <a href="https://wa.me/27798751929" class="btn whatsapp" aria-label="WhatsApp us" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </header>
 
-// Counter animation
-function initCounters() {
-    const counters = document.querySelectorAll('.hero-stat-number');
-    
-    const observerOptions = {
-        threshold: 0.5
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const counter = entry.target;
-                const target = parseInt(counter.getAttribute('data-count'));
-                animateCounter(counter, target);
-                observer.unobserve(counter);
-            }
-        });
-    }, observerOptions);
-    
-    counters.forEach(counter => observer.observe(counter));
-}
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero" aria-label="Hero section">
+            <div class="hero-overlay">
+                <h2>Engineering Excellence</h2>
+                <p>Premium Infrastructure and Construction Solutions Across South Africa</p>
+                <a href="#contact" class="btn primary">
+                    Request Consultation
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </a>
+            </div>
+            
+            <!-- Scroll indicator -->
+            <div class="scroll-indicator" aria-hidden="true">
+                <span>Scroll</span>
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+            </div>
+        </section>
 
-// Animate counter
-function animateCounter(element, target) {
-    let current = 0;
-    const increment = target / 50;
-    const suffix = target === 100 ? '%' : '+';
-    
-    const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-            element.textContent = target + suffix;
-            clearInterval(timer);
-        } else {
-            element.textContent = Math.floor(current) + suffix;
-        }
-    }, 30);
-}
+        <!-- About Section -->
+        <section id="about" class="section" aria-labelledby="about-heading">
+            <div class="container">
+                <h2 id="about-heading">About Our Company</h2>
+                <p class="about-text">
+                    Motsomalo Holdings (PTY) LTD is a South African construction and infrastructure development company delivering high-quality engineering and infrastructure solutions. With over 15 years of experience, we specialize in structural concrete construction, road works, mining infrastructure, and bulk earthworks across the nation.
+                </p>
+                
+                <div class="stats" role="region" aria-label="Company statistics">
+                    <div>
+                        <h3 class="counter" data-target="120">0</h3>
+                        <p>Projects Completed</p>
+                    </div>
+                    <div>
+                        <h3 class="counter" data-target="15">0</h3>
+                        <p>Years Experience</p>
+                    </div>
+                    <div>
+                        <h3 class="counter" data-target="45">0</h3>
+                        <p>Skilled Workers</p>
+                    </div>
+                    <div>
+                        <h3 class="counter" data-target="12">0</h3>
+                        <p>Major Clients</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-// Navigation scroll effect
-window.addEventListener('scroll', () => {
-    const nav = document.getElementById('navbar');
-    if (window.scrollY > 50) {
-        nav.classList.add('scrolled');
-    } else {
-        nav.classList.remove('scrolled');
-    }
-});
+        <!-- Services Section -->
+        <section id="services" class="section dark" aria-labelledby="services-heading">
+            <div class="container">
+                <h2 id="services-heading">Our Capabilities</h2>
+                <div class="services-grid">
+                    <article class="service">
+                        <i class="fas fa-building" aria-hidden="true"></i>
+                        <h3>Structural Concrete Construction</h3>
+                        <p>High-strength concrete structures for commercial and industrial applications</p>
+                    </article>
+                    
+                    <article class="service">
+                        <i class="fas fa-road" aria-hidden="true"></i>
+                        <h3>Road Construction & Repair</h3>
+                        <p>Complete road infrastructure from highways to municipal streets</p>
+                    </article>
+                    
+                    <article class="service">
+                        <i class="fas fa-hard-hat" aria-hidden="true"></i>
+                        <h3>Mining Infrastructure</h3>
+                        <p>Specialized mining support structures and facility construction</p>
+                    </article>
+                    
+                    <article class="service">
+                        <i class="fas fa-mountain" aria-hidden="true"></i>
+                        <h3>Bulk Earthworks</h3>
+                        <p>Large-scale excavation, grading, and land preparation services</p>
+                    </article>
+                    
+                    <article class="service">
+                        <i class="fas fa-city" aria-hidden="true"></i>
+                        <h3>Infrastructure Development</h3>
+                        <p>Comprehensive urban and rural infrastructure projects</p>
+                    </article>
+                    
+                    <article class="service">
+                        <i class="fas fa-water" aria-hidden="true"></i>
+                        <h3>Water Treatment Works</h3>
+                        <p>Water and wastewater treatment facility construction</p>
+                    </article>
+                </div>
+            </div>
+        </section>
 
-// Mobile menu toggle
-function toggleMobileMenu() {
-    const navLinks = document.querySelector('.nav-links');
-    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-}
+        <!-- Projects Section -->
+        <section id="projects" class="section" aria-labelledby="projects-heading">
+            <div class="container">
+                <h2 id="projects-heading">Our Projects</h2>
+                
+                <!-- Project Gallery 1 -->
+                <h3>Sandile Primary School</h3>
+                <div class="swiper projectSwiper1" role="region" aria-label="Sandile Primary School project gallery">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="project1.JPG" alt="Sandile Primary School construction site overview" loading="lazy">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="project2.JPG" alt="School building structural work in progress" loading="lazy">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="project3.JPG" alt="Concrete foundation and framework" loading="lazy">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="project4.JPG" alt="Construction team at work" loading="lazy">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="project5.JPG" alt="Completed school structure" loading="lazy">
+                        </div>
+                    </div>
+                    <!-- Navigation -->
+                    <div class="swiper-button-prev swiper-button-prev-1" aria-label="Previous slide"></div>
+                    <div class="swiper-button-next swiper-button-next-1" aria-label="Next slide"></div>
+                    <!-- Pagination -->
+                    <div class="swiper-pagination"></div>
+                </div>
 
-// Scroll to contact
-function scrollToContact() {
-    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-}
+                <!-- Project Gallery 2 -->
+                <h3>Infrastructure & Consulting Projects</h3>
+                <div class="swiper projectSwiper2" role="region" aria-label="Infrastructure and consulting projects gallery">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="project6.JPG.jpg" alt="Infrastructure project phase 1" loading="lazy">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="project7.JPG.jpg" alt="Road construction project" loading="lazy">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="project8.JPG.jpg" alt="Mining infrastructure development" loading="lazy">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="project9.JPG.jpg" alt="Bulk earthworks operation" loading="lazy">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="project10.JPG.jpg" alt="Water treatment facility construction" loading="lazy">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="project11.JPG.jpg" alt="Commercial building project" loading="lazy">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="project12.JPG.jpg" alt="Industrial site development" loading="lazy">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="project13.JPG.jpg" alt="Civil engineering works" loading="lazy">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="project14.JPG.jpg" alt="Structural concrete pouring" loading="lazy">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="project15.JPG.jpg" alt="Project site overview" loading="lazy">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="project16.JPG.jpg" alt="Completed infrastructure project" loading="lazy">
+                        </div>
+                    </div>
+                    <!-- Navigation -->
+                    <div class="swiper-button-prev swiper-button-prev-2" aria-label="Previous slide"></div>
+                    <div class="swiper-button-next swiper-button-next-2" aria-label="Next slide"></div>
+                    <!-- Pagination -->
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </section>
 
-// Form submission
-function handleSubmit(event) {
-    event.preventDefault();
-    showToast('Thank you! Your message has been sent. We will contact you within 24 hours.');
-    document.getElementById('consultationForm').reset();
-}
+        <!-- Location Section -->
+        <section class="section dark" aria-labelledby="location-heading">
+            <div class="container">
+                <h2 id="location-heading">Our Location</h2>
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps?q=3331+Thandekile+Dr,+Kagiso,+Krugersdorp&output=embed" 
+                        width="100%" 
+                        height="400" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Motsomalo Holdings Office Location"
+                        aria-label="Google Maps showing our office location in Kagiso, Krugersdorp">
+                    </iframe>
+                </div>
+                <div class="location-info">
+                    <address>
+                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                        <strong>Address:</strong> 3331 Thandekile Drive, Kagiso, Krugersdorp, 1754<br>
+                        <i class="fas fa-clock" aria-hidden="true"></i>
+                        <strong>Business Hours:</strong> Monday - Friday: 08:00 - 17:00
+                    </address>
+                </div>
+            </div>
+        </section>
 
-// Toast notification
-function showToast(message) {
-    const toast = document.getElementById('toast');
-    document.getElementById('toastMessage').textContent = message;
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 3000);
-}
+        <!-- Contact Section -->
+        <section id="contact" class="section" aria-labelledby="contact-heading">
+            <div class="container">
+                <h2 id="contact-heading">Request Consultation</h2>
+                <p class="section-intro">Ready to start your next project? Fill out the form below and our team will get back to you within 24 hours.</p>
+                
+                <form id="contact-form" action="#" method="POST" novalidate>
+                    <div class="form-group">
+                        <label for="name" class="visually-hidden">Full Name</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            placeholder="Full Name" 
+                            required 
+                            minlength="2"
+                            autocomplete="name"
+                            aria-required="true"
+                            aria-describedby="name-help">
+                        <span id="name-help" class="help-text">Please enter your full name</span>
+                    </div>
 
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    });
-});
+                    <div class="form-group">
+                        <label for="email" class="visually-hidden">Email Address</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="Email Address" 
+                            required
+                            autocomplete="email"
+                            aria-required="true"
+                            aria-describedby="email-help">
+                        <span id="email-help" class="help-text">We'll never share your email with anyone else</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone" class="visually-hidden">Phone Number (Optional)</label>
+                        <input 
+                            type="tel" 
+                            id="phone" 
+                            name="phone" 
+                            placeholder="Phone Number (Optional)"
+                            autocomplete="tel"
+                            pattern="[0-9\s\-\+\(\)]+">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="project-type" class="visually-hidden">Project Type</label>
+                        <select id="project-type" name="project_type" aria-label="Select project type">
+                            <option value="" disabled selected>Select Project Type</option>
+                            <option value="structural">Structural Concrete</option>
+                            <option value="roads">Road Construction</option>
+                            <option value="mining">Mining Infrastructure</option>
+                            <option value="earthworks">Bulk Earthworks</option>
+                            <option value="water">Water Treatment</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" class="visually-hidden">Project Description</label>
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            placeholder="Describe your project or consultation request" 
+                            required
+                            minlength="10"
+                            rows="5"
+                            aria-required="true"
+                            aria-describedby="message-help"></textarea>
+                        <span id="message-help" class="help-text">Please provide details about your project requirements</span>
+                    </div>
+
+                    <button type="submit" class="btn primary">
+                        <span>Send Consultation Request</span>
+                        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                    </button>
+                </form>
+
+                <!-- Alternative Contact Methods -->
+                <div class="contact-alternatives">
+                    <p>Prefer to reach us directly?</p>
+                    <div class="contact-buttons">
+                        <a href="tel:+27789685258" class="btn secondary">
+                            <i class="fas fa-phone" aria-hidden="true"></i>
+                            Call Now
+                        </a>
+                        <a href="https://wa.me/27798751929" class="btn whatsapp-large" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                            WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Floating Action Buttons -->
+    <div class="floating" role="complementary" aria-label="Quick contact buttons">
+        <a href="tel:+27789685258" class="call-btn" aria-label="Call us now">
+            <i class="fas fa-phone" aria-hidden="true"></i>
+        </a>
+        <a href="https://wa.me/27798751929" class="wa-btn" aria-label="Chat on WhatsApp" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="logo.PNG" alt="Motsomalo Holdings" width="40" height="40">
+                    <p><strong>Motsomalo Holdings (PTY) LTD</strong></p>
+                    <p>Building South Africa's Future</p>
+                </div>
+                
+                <div class="footer-contact">
+                    <p>
+                        <i class="fas fa-phone" aria-hidden="true"></i>
+                        <a href="tel:+27789685258">+27 (78) 968-5258</a>
+                    </p>
+                    <p>
+                        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                        <a href="https://wa.me/27798751929">+27 (79) 875-1929</a>
+                    </p>
+                    <p>
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                        <a href="mailto:MzwakheKhumalo91@gmail.com">MzwakheKhumalo91@gmail.com</a>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Motsomalo Holdings (PTY) LTD. All rights reserved.</p>
+                <p>Enterprise Number: 2022 / 330016 / 07</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="script.js?v=31"></script>
+</body>
+</html>
