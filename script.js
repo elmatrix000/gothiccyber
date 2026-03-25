@@ -1,8 +1,16 @@
 // ==========================================
-// MOTSOMALO HOLDINGS - MODERN JAVASCRIPT
+// MOTSOMALO HOLDINGS - FIXED & UPGRADED
 // ==========================================
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // Check if required libraries loaded
+    if (typeof Swiper === 'undefined') {
+        console.error('Swiper library not loaded');
+    }
+    if (typeof emailjs === 'undefined') {
+        console.error('EmailJS library not loaded');
+    }
     
     // Initialize all components
     initSwipers();
@@ -10,23 +18,25 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
     initScrollAnimations();
     initEmailJS();
-    initLazyLoading();
     initWhatsAppButton();
+    updateCopyright();
 });
 
-// Company Contact Information
-const COMPANY_INFO = {
+// Company Contact Info - UNIFIED NUMBER
+const COMPANY = {
     phone: '+27789685258',
-    whatsapp: '+27789685258', // Same as phone
+    whatsapp: '+27789685258', // Same number
     email: 'MzwakheKhumalo91@gmail.com',
-    address: '3331 Thandekile Drive, Kagiso, Krugersdorp, 1754'
+    formatted: '+27 (78) 968-5258'
 };
 
 // ==========================================
-// SWIPER SLIDERS - Enhanced with modern config
+// SWIPER SLIDERS - FIXED INIT
 // ==========================================
 function initSwipers() {
-    const swiperConfig = {
+    if (typeof Swiper === 'undefined') return;
+    
+    const commonConfig = {
         loop: true,
         autoplay: {
             delay: 4000,
@@ -34,169 +44,178 @@ function initSwipers() {
             pauseOnMouseEnter: true
         },
         slidesPerView: 1,
-        spaceBetween: 24,
+        spaceBetween: 20,
         grabCursor: true,
-        keyboard: {
-            enabled: true,
-        },
+        keyboard: { enabled: true },
         pagination: {
+            el: '.swiper-pagination',
             clickable: true,
-            dynamicBullets: true,
+            dynamicBullets: true
         },
-        breakpoints: {
-            640: {
-                slidesPerView: 1.2,
-                spaceBetween: 20
-            },
-            768: {
-                slidesPerView: 2,
-                spaceBetween: 24
-            },
-            1024: {
-                slidesPerView: 2.5,
-                spaceBetween: 30
-            },
-            1280: {
-                slidesPerView: 3,
-                spaceBetween: 32
-            }
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
         },
-        effect: 'slide',
-        speed: 800,
+        preloadImages: true,
         lazy: {
             loadPrevNext: true,
-        }
+            loadPrevNextAmount: 2
+        },
+        watchSlidesProgress: true,
+        speed: 600
     };
 
-    // Project Swiper 1 - School Projects
-    if (document.querySelector('.projectSwiper1')) {
+    // Initialize Swiper 1 if element exists
+    const swiper1El = document.querySelector('.projectSwiper1');
+    if (swiper1El) {
         new Swiper('.projectSwiper1', {
-            ...swiperConfig,
+            ...commonConfig,
             navigation: {
                 nextEl: '.swiper-button-next-1',
-                prevEl: '.swiper-button-prev-1',
+                prevEl: '.swiper-button-prev-1'
             }
         });
     }
 
-    // Project Swiper 2 - Infrastructure Projects
-    if (document.querySelector('.projectSwiper2')) {
+    // Initialize Swiper 2 if element exists
+    const swiper2El = document.querySelector('.projectSwiper2');
+    if (swiper2El) {
         new Swiper('.projectSwiper2', {
-            ...swiperConfig,
+            ...commonConfig,
             navigation: {
                 nextEl: '.swiper-button-next-2',
-                prevEl: '.swiper-button-prev-2',
+                prevEl: '.swiper-button-prev-2'
             }
         });
     }
 }
 
 // ==========================================
-// ANIMATED COUNTERS - Intersection Observer
+// COUNTERS - FIXED INTERSECTION OBSERVER
 // ==========================================
 function initCounters() {
     const counters = document.querySelectorAll('.counter');
+    if (!counters.length) return;
     
-    const observerOptions = {
-        threshold: 0.5,
-        rootMargin: '0px'
-    };
-
-    const counterObserver = new IntersectionObserver((entries) => {
+    // Check if IntersectionObserver is supported
+    if (!('IntersectionObserver' in window)) {
+        // Fallback: animate immediately
+        counters.forEach(counter => animateCounter(counter));
+        return;
+    }
+    
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const counter = entry.target;
-                animateCounter(counter);
-                counterObserver.unobserve(counter);
+                animateCounter(entry.target);
+                observer.unobserve(entry.target);
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.5 });
 
-    counters.forEach(counter => counterObserver.observe(counter));
+    counters.forEach(counter => observer.observe(counter));
 }
 
 function animateCounter(counter) {
-    const target = parseInt(counter.getAttribute('data-target'));
+    const target = parseInt(counter.getAttribute('data-target')) || 0;
     const duration = 2000;
-    const startTime = performance.now();
-    const startValue = 0;
-
+    const start = performance.now();
+    
     function update(currentTime) {
-        const elapsed = currentTime - startTime;
+        const elapsed = currentTime - start;
         const progress = Math.min(elapsed / duration, 1);
-        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-        const current = Math.floor(startValue + (target - startValue) * easeOutQuart);
+        const easeOut = 1 - Math.pow(1 - progress, 4);
+        const current = Math.floor(target * easeOut);
         
-        counter.innerText = current.toLocaleString();
-
+        counter.textContent = current.toLocaleString();
+        
         if (progress < 1) {
             requestAnimationFrame(update);
         } else {
-            counter.innerText = target.toLocaleString();
-            counter.classList.add('counter-complete');
+            counter.textContent = target.toLocaleString();
         }
     }
-
+    
     requestAnimationFrame(update);
 }
 
 // ==========================================
-// STICKY NAVIGATION - Mobile & Desktop
+// NAVIGATION - FIXED MOBILE MENU
 // ==========================================
 function initNavigation() {
     const header = document.querySelector('.header');
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const mobileBtn = document.querySelector('.mobile-menu-btn');
     const nav = document.querySelector('.nav');
+    
+    if (!header) return;
+    
     let lastScroll = 0;
-
-    window.addEventListener('scroll', () => {
+    
+    window.addEventListener('scroll', function() {
         const currentScroll = window.pageYOffset;
         
-        if (currentScroll > 100) {
+        // Add scrolled class
+        if (currentScroll > 50) {
             header.classList.add('header-scrolled');
         } else {
             header.classList.remove('header-scrolled');
         }
-
+        
+        // Hide/show header on scroll
         if (currentScroll > lastScroll && currentScroll > 200) {
             header.style.transform = 'translateY(-100%)';
         } else {
             header.style.transform = 'translateY(0)';
         }
-        
         lastScroll = currentScroll;
     });
-
-    if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', () => {
-            const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
-            mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
-            mobileMenuBtn.classList.toggle('active');
+    
+    // Mobile menu toggle
+    if (mobileBtn && nav) {
+        mobileBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const isOpen = nav.classList.contains('nav-open');
+            
+            this.classList.toggle('active');
             nav.classList.toggle('nav-open');
             document.body.classList.toggle('menu-open');
+            this.setAttribute('aria-expanded', !isOpen);
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (nav.classList.contains('nav-open') && !nav.contains(e.target) && !mobileBtn.contains(e.target)) {
+                mobileBtn.classList.remove('active');
+                nav.classList.remove('nav-open');
+                document.body.classList.remove('menu-open');
+                mobileBtn.setAttribute('aria-expanded', 'false');
+            }
         });
     }
-
+    
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const target = document.querySelector(targetId);
             if (target) {
-                const headerOffset = 80;
-                const elementPosition = target.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
+                e.preventDefault();
+                const headerHeight = header.offsetHeight || 80;
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                
                 window.scrollTo({
-                    top: offsetPosition,
+                    top: targetPosition,
                     behavior: 'smooth'
                 });
-
-                if (nav.classList.contains('nav-open')) {
-                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                    mobileMenuBtn.classList.remove('active');
+                
+                // Close mobile menu
+                if (nav && nav.classList.contains('nav-open')) {
+                    mobileBtn.classList.remove('active');
                     nav.classList.remove('nav-open');
                     document.body.classList.remove('menu-open');
+                    mobileBtn.setAttribute('aria-expanded', 'false');
                 }
             }
         });
@@ -204,128 +223,118 @@ function initNavigation() {
 }
 
 // ==========================================
-// SCROLL ANIMATIONS - Reveal on scroll
+// SCROLL ANIMATIONS
 // ==========================================
 function initScrollAnimations() {
-    const animatedElements = document.querySelectorAll('.service, .stats > div, h2, .about-text');
+    const elements = document.querySelectorAll('.service, .stats > div, h2, .about-text');
+    if (!elements.length || !('IntersectionObserver' in window)) return;
     
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const revealObserver = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
                 setTimeout(() => {
                     entry.target.classList.add('revealed');
                 }, index * 100);
-                revealObserver.unobserve(entry.target);
+                observer.unobserve(entry.target);
             }
         });
-    }, observerOptions);
-
-    animatedElements.forEach(el => {
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    
+    elements.forEach(el => {
         el.classList.add('reveal-on-scroll');
-        revealObserver.observe(el);
+        observer.observe(el);
     });
 }
 
 // ==========================================
-// EMAILJS - Contact Form Handling
+// EMAILJS - FIXED & TESTED
 // ==========================================
 function initEmailJS() {
-    // Initialize EmailJS with your public key
-    emailjs.init("kcfQ4oTXD-9-ckF5a");
-
+    if (typeof emailjs === 'undefined') {
+        console.error('EmailJS not loaded');
+        return;
+    }
+    
+    // Initialize with public key
+    try {
+        emailjs.init("kcfQ4oTXD-9-ckF5a");
+    } catch (e) {
+        console.error('EmailJS init failed:', e);
+        return;
+    }
+    
     const form = document.getElementById("contact-form");
-    const submitBtn = form?.querySelector('button[type="submit"]');
-    const originalBtnText = submitBtn?.innerHTML;
-
-    if (form) {
-        form.addEventListener("submit", async function(e) {
-            e.preventDefault();
-            
-            // Validate form
-            if (!validateForm(form)) {
-                return;
-            }
-
-            // Loading state
-            if (submitBtn) {
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = '<span class="spinner"></span> Sending...';
-            }
-
-            // Prepare template parameters
-            const formData = new FormData(form);
-            const templateParams = {
-                from_name: formData.get('name'),
-                from_email: formData.get('email'),
-                phone: formData.get('phone') || 'Not provided',
-                project_type: formData.get('project_type') || 'Not specified',
-                message: formData.get('message'),
-                to_email: COMPANY_INFO.email,
-                reply_to: formData.get('email')
-            };
-
-            try {
-                // Send using send method instead of sendForm for better control
-                await emailjs.send(
-                    "service_5o6z66k",
-                    "template_imj3sps",
-                    templateParams
-                );
-                
-                showNotification("Success! Your consultation request has been sent. We'll contact you within 24 hours.", "success");
+    if (!form) return;
+    
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn ? submitBtn.innerHTML : 'Send';
+    
+    form.addEventListener("submit", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // Validate
+        if (!validateForm(form)) return;
+        
+        // Loading state
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner"></span> Sending...';
+        }
+        
+        // Get form data
+        const formData = new FormData(form);
+        const params = {
+            from_name: formData.get('name') || '',
+            from_email: formData.get('email') || '',
+            phone: formData.get('phone') || 'Not provided',
+            project_type: formData.get('project_type') || 'Not specified',
+            message: formData.get('message') || '',
+            to_email: COMPANY.email,
+            reply_to: formData.get('email') || ''
+        };
+        
+        console.log('Sending email with params:', params);
+        
+        // Send email
+        emailjs.send("service_5o6z66k", "template_imj3sps", params)
+            .then(function(response) {
+                console.log('EmailJS SUCCESS:', response);
+                showNotification("✓ Message sent successfully! We'll contact you within 24 hours.", "success");
                 form.reset();
-                
-                // Track successful submission (optional analytics)
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'form_submission', {
-                        'event_category': 'contact',
-                        'event_label': 'consultation_request'
-                    });
-                }
-                
-            } catch (error) {
-                console.error('EmailJS Error:', error);
-                showNotification("Failed to send message. Please try again or contact us directly via phone/WhatsApp.", "error");
-                
-                // Show alternative contact methods on error
-                showAlternativeContact();
-            } finally {
+            }, function(error) {
+                console.error('EmailJS FAILED:', error);
+                showNotification("✗ Failed to send. Please call us directly at " + COMPANY.formatted, "error");
+            })
+            .finally(function() {
                 if (submitBtn) {
                     submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalBtnText;
+                    submitBtn.innerHTML = originalText;
                 }
-            }
-        });
-    }
+            });
+    });
 }
 
-// Form Validation
 function validateForm(form) {
     let isValid = true;
-    const requiredFields = form.querySelectorAll('[required]');
+    const required = form.querySelectorAll('[required]');
     
-    requiredFields.forEach(field => {
+    required.forEach(field => {
+        // Remove existing errors
+        field.classList.remove('error');
+        const existingError = field.parentNode.querySelector('.field-error');
+        if (existingError) existingError.remove();
+        
         if (!field.value.trim()) {
             isValid = false;
             field.classList.add('error');
             showFieldError(field, 'This field is required');
-        } else {
-            field.classList.remove('error');
-            removeFieldError(field);
-        }
-        
-        // Email validation
-        if (field.type === 'email' && field.value) {
+        } else if (field.type === 'email' && field.value) {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(field.value)) {
                 isValid = false;
                 field.classList.add('error');
-                showFieldError(field, 'Please enter a valid email address');
+                showFieldError(field, 'Please enter a valid email');
             }
         }
     });
@@ -334,173 +343,83 @@ function validateForm(form) {
 }
 
 function showFieldError(field, message) {
-    removeFieldError(field);
-    const errorDiv = document.createElement('div');
-    errorDiv.className = 'field-error';
-    errorDiv.textContent = message;
-    errorDiv.style.color = 'var(--error)';
-    errorDiv.style.fontSize = '0.875rem';
-    errorDiv.style.marginTop = '0.25rem';
-    field.parentNode.appendChild(errorDiv);
-}
-
-function removeFieldError(field) {
-    const existingError = field.parentNode.querySelector('.field-error');
-    if (existingError) {
-        existingError.remove();
-    }
-}
-
-function showAlternativeContact() {
-    const alternatives = document.querySelector('.contact-alternatives');
-    if (alternatives) {
-        alternatives.style.animation = 'pulse 0.5s ease';
-        alternatives.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+    const error = document.createElement('span');
+    error.className = 'field-error';
+    error.textContent = message;
+    field.parentNode.appendChild(error);
 }
 
 // ==========================================
-// WHATSAPP BUTTON - Show number on hover/click
+// WHATSAPP BUTTON - SHOW NUMBER
 // ==========================================
 function initWhatsAppButton() {
     const waBtn = document.querySelector('.wa-btn');
-    const floatingContainer = document.querySelector('.floating');
+    const floating = document.querySelector('.floating');
+    if (!waBtn || !floating) return;
     
-    if (waBtn && floatingContainer) {
-        // Create number display element
-        const numberDisplay = document.createElement('div');
-        numberDisplay.className = 'wa-number-display';
-        numberDisplay.innerHTML = `
-            <span class="wa-number">${formatPhoneNumber(COMPANY_INFO.whatsapp)}</span>
-            <span class="wa-label">Click to chat</span>
-        `;
-        
-        // Insert before the button
-        floatingContainer.insertBefore(numberDisplay, waBtn);
-        
-        // Update href with proper WhatsApp API
-        waBtn.href = `https://wa.me/${COMPANY_INFO.whatsapp.replace(/\+/g, '')}?text=Hello%20Motsomalo%20Holdings,%20I%20would%20like%20to%20inquire%20about%20your%20services.`;
-        
-        // Show number on hover
-        waBtn.addEventListener('mouseenter', () => {
-            numberDisplay.classList.add('show');
-        });
-        
-        floatingContainer.addEventListener('mouseleave', () => {
-            numberDisplay.classList.remove('show');
-        });
-        
-        // Mobile tap to show
-        waBtn.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768) {
-                // On mobile, toggle number display
-                e.preventDefault();
-                numberDisplay.classList.toggle('show');
-                
-                // If showing, open WhatsApp after delay
-                if (numberDisplay.classList.contains('show')) {
-                    setTimeout(() => {
-                        window.open(waBtn.href, '_blank');
-                    }, 1000);
-                }
-            }
-        });
-    }
+    // Create tooltip
+    const tooltip = document.createElement('div');
+    tooltip.className = 'wa-tooltip';
+    tooltip.innerHTML = `
+        <div class="wa-number">${COMPANY.formatted}</div>
+        <div class="wa-text">Click to chat</div>
+    `;
+    floating.insertBefore(tooltip, waBtn);
     
-    // Update all WhatsApp links on page
-    document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
-        const currentHref = link.getAttribute('href');
-        if (currentHref && !currentHref.includes(COMPANY_INFO.whatsapp.replace(/\+/g, ''))) {
-            link.href = `https://wa.me/${COMPANY_INFO.whatsapp.replace(/\+/g, '')}`;
-        }
+    // Update all WhatsApp links
+    const waLinks = document.querySelectorAll('a[href*="wa.me"]');
+    waLinks.forEach(link => {
+        const cleanNumber = COMPANY.whatsapp.replace(/\D/g, '');
+        const message = encodeURIComponent("Hello Motsomalo Holdings, I would like to inquire about your services.");
+        link.href = `https://wa.me/${cleanNumber}?text=${message}`;
     });
-}
-
-function formatPhoneNumber(number) {
-    // Format: +27 (78) 968-5258
-    const cleaned = number.replace(/\D/g, '');
-    if (cleaned.length === 11 && cleaned.startsWith('27')) {
-        return `+${cleaned.slice(0, 2)} (${cleaned.slice(2, 4)}) ${cleaned.slice(4, 7)}-${cleaned.slice(7)}`;
-    }
-    return number;
+    
+    // Show/hide tooltip
+    waBtn.addEventListener('mouseenter', () => tooltip.classList.add('show'));
+    floating.addEventListener('mouseleave', () => tooltip.classList.remove('show'));
 }
 
 // ==========================================
 // NOTIFICATION SYSTEM
 // ==========================================
-function showNotification(message, type = 'info') {
+function showNotification(message, type) {
+    // Remove existing
     const existing = document.querySelector('.notification');
     if (existing) existing.remove();
-
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.innerHTML = `
-        <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i>
+    
+    const notif = document.createElement('div');
+    notif.className = `notification notification-${type}`;
+    notif.innerHTML = `
         <span>${message}</span>
-        <button class="notification-close" aria-label="Close notification">
-            <i class="fas fa-times"></i>
-        </button>
+        <button class="notification-close" aria-label="Close">&times;</button>
     `;
     
-    document.body.appendChild(notification);
-
-    // Close button functionality
-    const closeBtn = notification.querySelector('.notification-close');
-    closeBtn.addEventListener('click', () => {
-        notification.classList.remove('show');
-        setTimeout(() => notification.remove(), 300);
+    document.body.appendChild(notif);
+    
+    // Animate in
+    setTimeout(() => notif.classList.add('show'), 10);
+    
+    // Close button
+    notif.querySelector('.notification-close').addEventListener('click', () => {
+        notif.classList.remove('show');
+        setTimeout(() => notif.remove(), 300);
     });
-
-    requestAnimationFrame(() => {
-        notification.classList.add('show');
-    });
-
+    
+    // Auto close
     setTimeout(() => {
-        notification.classList.remove('show');
-        setTimeout(() => notification.remove(), 300);
+        if (notif.parentNode) {
+            notif.classList.remove('show');
+            setTimeout(() => notif.remove(), 300);
+        }
     }, 6000);
 }
 
 // ==========================================
-// LAZY LOADING - Images & Iframes
+// UTILITIES
 // ==========================================
-function initLazyLoading() {
-    const lazyElements = document.querySelectorAll('img[data-src], iframe[data-src]');
-    
-    const lazyObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const el = entry.target;
-                el.src = el.dataset.src;
-                el.removeAttribute('data-src');
-                el.classList.add('loaded');
-                lazyObserver.unobserve(el);
-            }
-        });
-    });
-
-    lazyElements.forEach(el => lazyObserver.observe(el));
-}
-
-// ==========================================
-// UTILITY FUNCTIONS
-// ==========================================
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Update copyright year automatically
-document.addEventListener('DOMContentLoaded', () => {
-    const yearSpan = document.querySelector('.current-year');
-    if (yearSpan) {
-        yearSpan.textContent = new Date().getFullYear();
+function updateCopyright() {
+    const yearEl = document.querySelector('.current-year');
+    if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
     }
-});
+}
