@@ -3,168 +3,577 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Motsomalo Holdings (PTY) LTD</title>
+    <title>Motsomalo Holdings (PTY) LTD | Engineering Excellence</title>
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-    <link rel="stylesheet" href="style.css?v=34">
+    <link rel="stylesheet" href="style.css?v=35">
 </head>
 <body>
 
-<header class="header">
+<!-- Header -->
+<header class="header" id="header">
     <div class="container header-flex">
-        <div class="logo-area">
-            <img src="logo.PNG" class="logo" alt="Logo">
-            <div>
-                <h1>Motsomalo Holdings (PTY) LTD</h1>
-                <p>Enterprise Number: 2022 / 330016 / 07</p>
+        <a href="#" class="logo-area">
+            <div class="logo-icon">M</div>
+            <div class="logo-text">
+                <h1>Motsomalo Holdings</h1>
+                <span>PTY LTD</span>
             </div>
-        </div>
+        </a>
 
-        <button class="mobile-menu-btn">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-
-        <nav class="nav">
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
+        <nav class="nav" id="nav">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#services" class="nav-link">Services</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#contact" class="nav-link">Contact</a>
         </nav>
 
-        <div class="header-buttons">
-            <a href="tel:+27789685258" class="btn call"><i class="fas fa-phone"></i></a>
-            <a href="https://wa.me/27789685258" class="btn whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <div class="header-actions">
+            <a href="tel:+27789685258" class="btn btn-icon" aria-label="Call">
+                <i class="fas fa-phone"></i>
+            </a>
+            <a href="https://wa.me/27789685258" class="btn btn-icon whatsapp-icon" target="_blank" aria-label="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#contact" class="btn btn-primary desktop-only">Get Quote</a>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </div>
 </header>
 
+<!-- Hero -->
 <section class="hero">
-    <div class="hero-overlay">
-        <h2>Engineering Excellence</h2>
-        <p>Premium Infrastructure and Construction Solutions Across South Africa</p>
-        
-        <div class="hero-contact">
-            <a href="tel:+27789685258" class="btn primary">
-                <i class="fas fa-phone"></i> Call +27 (78) 968-5258
-            </a>
-            <a href="https://wa.me/27789685258" class="btn whatsapp" target="_blank">
-                <i class="fab fa-whatsapp"></i> WhatsApp +27 (78) 968-5258
-            </a>
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+        <div class="container">
+            <div class="hero-badge">
+                <i class="fas fa-award"></i>
+                <span>15+ Years Excellence</span>
+            </div>
+            <h1 class="hero-title">Building South Africa's Future</h1>
+            <p class="hero-subtitle">Premium infrastructure and construction solutions. From concept to completion, we deliver excellence.</p>
+            
+            <div class="hero-cta">
+                <a href="#contact" class="btn btn-glow btn-large">
+                    <span>Start Your Project</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#projects" class="btn btn-outline btn-large">
+                    <span>View Our Work</span>
+                </a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">120+</span>
+                    <span class="stat-label">Projects Done</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number">15</span>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number">45+</span>
+                    <span class="stat-label">Expert Workers</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-indicator">
+        <div class="mouse">
+            <div class="wheel"></div>
         </div>
     </div>
 </section>
 
-<section id="about" class="section">
+<!-- About -->
+<section id="about" class="section section-about">
     <div class="container">
-        <h2>About Our Company</h2>
-        <p class="about-text">Motsomalo Holdings (PTY) LTD is a South African construction and infrastructure development company.</p>
-        
-        <div class="stats">
-            <div><h3 class="counter" data-target="120">0</h3><p>Projects Completed</p></div>
-            <div><h3 class="counter" data-target="15">0</h3><p>Years Experience</p></div>
-            <div><h3 class="counter" data-target="45">0</h3><p>Skilled Workers</p></div>
-            <div><h3 class="counter" data-target="12">0</h3><p>Major Clients</p></div>
+        <div class="section-header">
+            <span class="section-tag">About Us</span>
+            <h2 class="section-title">Trusted Construction Partner</h2>
+            <p class="section-desc">Motsomalo Holdings delivers high-quality engineering and infrastructure solutions across South Africa.</p>
+        </div>
+
+        <div class="about-grid">
+            <div class="about-card">
+                <div class="about-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Quality Assured</h3>
+                <p>ISO certified processes ensuring every project meets international standards.</p>
+            </div>
+            <div class="about-card featured">
+                <div class="about-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Expert Team</h3>
+                <p>45+ skilled professionals with decades of combined experience.</p>
+            </div>
+            <div class="about-card">
+                <div class="about-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3>On Time Delivery</h3>
+                <p>Proven track record of completing projects within budget and schedule.</p>
+            </div>
         </div>
     </div>
 </section>
 
-<section id="services" class="section dark">
+<!-- Services -->
+<section id="services" class="section section-services">
     <div class="container">
-        <h2>Our Capabilities</h2>
+        <div class="section-header light">
+            <span class="section-tag">Our Services</span>
+            <h2 class="section-title">What We Do Best</h2>
+            <p class="section-desc">Comprehensive construction and infrastructure solutions tailored to your needs.</p>
+        </div>
+
         <div class="services-grid">
-            <div class="service"><i class="fas fa-building"></i>Structural Concrete Construction</div>
-            <div class="service"><i class="fas fa-road"></i>Road Construction & Repair</div>
-            <div class="service"><i class="fas fa-hard-hat"></i>Mining Infrastructure</div>
-            <div class="service"><i class="fas fa-mountain"></i>Bulk Earthworks</div>
-            <div class="service"><i class="fas fa-city"></i>Infrastructure Development</div>
-            <div class="service"><i class="fas fa-water"></i>Water Treatment Works</div>
-        </div>
-    </div>
-</section>
-
-<section id="projects" class="section">
-    <div class="container">
-        <h2>Our Projects</h2>
-        
-        <h3>Sandile Primary School</h3>
-        <div class="swiper projectSwiper1">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="project1.JPG" alt="Project 1"></div>
-                <div class="swiper-slide"><img src="project2.JPG" alt="Project 2"></div>
-                <div class="swiper-slide"><img src="project3.JPG" alt="Project 3"></div>
-                <div class="swiper-slide"><img src="project4.JPG" alt="Project 4"></div>
-                <div class="swiper-slide"><img src="project5.JPG" alt="Project 5"></div>
+            <div class="service-card" data-service="concrete">
+                <div class="service-image">
+                    <i class="fas fa-building"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Structural Concrete</h3>
+                    <p>High-strength concrete structures for commercial and industrial applications.</p>
+                    <a href="#contact" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                </div>
             </div>
-            <div class="swiper-button-prev swiper-button-prev-1"></div>
-            <div class="swiper-button-next swiper-button-next-1"></div>
-            <div class="swiper-pagination"></div>
-        </div>
 
-        <h3>Infrastructure Projects</h3>
-        <div class="swiper projectSwiper2">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="project6.JPG.jpg" alt="Project 6"></div>
-                <div class="swiper-slide"><img src="project7.JPG.jpg" alt="Project 7"></div>
-                <div class="swiper-slide"><img src="project8.JPG.jpg" alt="Project 8"></div>
-                <div class="swiper-slide"><img src="project9.JPG.jpg" alt="Project 9"></div>
-                <div class="swiper-slide"><img src="project10.JPG.jpg" alt="Project 10"></div>
-                <div class="swiper-slide"><img src="project11.JPG.jpg" alt="Project 11"></div>
-                <div class="swiper-slide"><img src="project12.JPG.jpg" alt="Project 12"></div>
-                <div class="swiper-slide"><img src="project13.JPG.jpg" alt="Project 13"></div>
-                <div class="swiper-slide"><img src="project14.JPG.jpg" alt="Project 14"></div>
-                <div class="swiper-slide"><img src="project15.JPG.jpg" alt="Project 15"></div>
-                <div class="swiper-slide"><img src="project16.JPG.jpg" alt="Project 16"></div>
+            <div class="service-card" data-service="roads">
+                <div class="service-image">
+                    <i class="fas fa-road"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Road Construction</h3>
+                    <p>Highways, municipal streets, and road repair services nationwide.</p>
+                    <a href="#contact" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                </div>
             </div>
-            <div class="swiper-button-prev swiper-button-prev-2"></div>
-            <div class="swiper-button-next swiper-button-next-2"></div>
-            <div class="swiper-pagination"></div>
+
+            <div class="service-card" data-service="mining">
+                <div class="service-image">
+                    <i class="fas fa-hard-hat"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Mining Infrastructure</h3>
+                    <p>Specialized mining support structures and facility construction.</p>
+                    <a href="#contact" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="service-card" data-service="earthworks">
+                <div class="service-image">
+                    <i class="fas fa-mountain"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Bulk Earthworks</h3>
+                    <p>Large-scale excavation, grading, and land preparation services.</p>
+                    <a href="#contact" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="service-card" data-service="infrastructure">
+                <div class="service-image">
+                    <i class="fas fa-city"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Infrastructure Dev</h3>
+                    <p>Comprehensive urban and rural infrastructure development projects.</p>
+                    <a href="#contact" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="service-card" data-service="water">
+                <div class="service-image">
+                    <i class="fas fa-water"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Water Treatment</h3>
+                    <p>Water and wastewater treatment facility construction.</p>
+                    <a href="#contact" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<section class="section dark">
+<!-- Projects -->
+<section id="projects" class="section section-projects">
     <div class="container">
-        <h2>Our Location</h2>
-        <iframe src="https://www.google.com/maps?q=3331+Thandekile+Dr,+Kagiso,+Krugersdorp&output=embed" width="100%" height="400" style="border:0;"></iframe>
-    </div>
-</section>
+        <div class="section-header">
+            <span class="section-tag">Portfolio</span>
+            <h2 class="section-title">Featured Projects</h2>
+            <p class="section-desc">Explore our completed infrastructure and construction projects.</p>
+        </div>
 
-<section id="contact" class="section">
-    <div class="container">
-        <h2>Request Consultation</h2>
-        
-        <form id="contact-form">
-            <input type="text" name="name" placeholder="Full Name" required>
-            <input type="email" name="email" placeholder="Email Address" required>
-            <input type="tel" name="phone" placeholder="Phone Number">
-            <textarea name="message" placeholder="Describe your project" required rows="5"></textarea>
-            <button type="submit" class="btn primary">Send Consultation</button>
-        </form>
+        <div class="project-tabs">
+            <button class="tab-btn active" data-tab="school">Sandile Primary School</button>
+            <button class="tab-btn" data-tab="infrastructure">Infrastructure</button>
+        </div>
 
-        <div class="contact-direct">
-            <p>Or contact us directly:</p>
-            <a href="tel:+27789685258" class="btn secondary"><i class="fas fa-phone"></i> +27 (78) 968-5258</a>
-            <a href="https://wa.me/27789685258" class="btn whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> +27 (78) 968-5258</a>
+        <div class="tab-content active" id="tab-school">
+            <div class="swiper projectSwiper1">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="project-slide">
+                            <img src="project1.JPG" alt="Sandile Primary School">
+                            <div class="project-overlay">
+                                <h4>Sandile Primary School</h4>
+                                <p>Complete school infrastructure development</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="project-slide">
+                            <img src="project2.JPG" alt="Construction Phase">
+                            <div class="project-overlay">
+                                <h4>Construction Phase</h4>
+                                <p>Structural framework installation</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="project-slide">
+                            <img src="project3.JPG" alt="Foundation Work">
+                            <div class="project-overlay">
+                                <h4>Foundation Work</h4>
+                                <p>Concrete foundation and groundwork</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="project-slide">
+                            <img src="project4.JPG" alt="Team at Work">
+                            <div class="project-overlay">
+                                <h4>Expert Team</h4>
+                                <p>Skilled professionals on site</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="project-slide">
+                            <img src="project5.JPG" alt="Completed Project">
+                            <div class="project-overlay">
+                                <h4>Completed</h4>
+                                <p>Final handover and completion</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev swiper-button-prev-1"></div>
+                <div class="swiper-button-next swiper-button-next-1"></div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="tab-infrastructure">
+            <div class="swiper projectSwiper2">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="project-slide">
+                            <img src="project6.JPG.jpg" alt="Infrastructure Project">
+                            <div class="project-overlay">
+                                <h4>Infrastructure Development</h4>
+                                <p>Large-scale civil engineering project</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="project-slide">
+                            <img src="project7.JPG.jpg" alt="Road Construction">
+                            <div class="project-overlay">
+                                <h4>Road Construction</h4>
+                                <p>Municipal road development</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="project-slide">
+                            <img src="project8.JPG.jpg" alt="Mining Site">
+                            <div class="project-overlay">
+                                <h4>Mining Infrastructure</h4>
+                                <p>Specialized mining facilities</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="project-slide">
+                            <img src="project9.JPG.jpg" alt="Earthworks">
+                            <div class="project-overlay">
+                                <h4>Bulk Earthworks</h4>
+                                <p>Land preparation and grading</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="project-slide">
+                            <img src="project10.JPG.jpg" alt="Water Treatment">
+                            <div class="project-overlay">
+                                <h4>Water Treatment</h4>
+                                <p>Water facility construction</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="project-slide">
+                            <img src="project11.JPG.jpg" alt="Commercial Building">
+                            <div class="project-overlay">
+                                <h4>Commercial Project</h4>
+                                <p>Office building construction</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="project-slide">
+                            <img src="project12.JPG.jpg" alt="Industrial Site">
+                            <div class="project-overlay">
+                                <h4>Industrial Site</h4>
+                                <p>Manufacturing facility build</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="project-slide">
+                            <img src="project13.JPG.jpg" alt="Civil Works">
+                            <div class="project-overlay">
+                                <h4>Civil Engineering</h4>
+                                <p>Public works project</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="project-slide">
+                            <img src="project14.JPG.jpg" alt="Concrete Pouring">
+                            <div class="project-overlay">
+                                <h4>Concrete Works</h4>
+                                <p>Large-scale concrete pouring</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="project-slide">
+                            <img src="project15.JPG.jpg" alt="Site Overview">
+                            <div class="project-overlay">
+                                <h4>Site Overview</h4>
+                                <p>Aerial view of project site</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="project-slide">
+                            <img src="project16.JPG.jpg" alt="Project Complete">
+                            <div class="project-overlay">
+                                <h4>Project Complete</h4>
+                                <p>Successful handover</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev swiper-button-prev-2"></div>
+                <div class="swiper-button-next swiper-button-next-2"></div>
+            </div>
         </div>
     </div>
 </section>
 
-<div class="floating">
-    <a href="tel:+27789685258" class="call-btn"><i class="fas fa-phone"></i></a>
-    <a href="https://wa.me/27789685258" class="wa-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
-</div>
+<!-- Location -->
+<section class="section section-location">
+    <div class="container">
+        <div class="location-grid">
+            <div class="location-info">
+                <span class="section-tag">Visit Us</span>
+                <h2>Our Office</h2>
+                <div class="info-list">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Address</h4>
+                            <p>3331 Thandekile Drive<br>Kagiso, Krugersdorp, 1754</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Business Hours</h4>
+                            <p>Monday - Friday: 08:00 - 17:00<br>Saturday: 08:00 - 12:00</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Contact</h4>
+                            <p>+27 (78) 968-5258<br>MzwakheKhumalo91@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="location-actions">
+                    <a href="https://maps.google.com/?q=3331+Thandekile+Dr,+Kagiso,+Krugersdorp" target="_blank" class="btn btn-primary">
+                        <i class="fas fa-directions"></i> Get Directions
+                    </a>
+                </div>
+            </div>
+            <div class="location-map">
+                <iframe src="https://www.google.com/maps?q=3331+Thandekile+Dr,+Kagiso,+Krugersdorp&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
 
-<footer>
-    <p>&copy; 2026 Motsomalo Holdings (PTY) LTD</p>
-    <p>Phone: +27 (78) 968-5258 | WhatsApp: +27 (78) 968-5258<br>Email: MzwakheKhumalo91@gmail.com</p>
+<!-- Contact -->
+<section id="contact" class="section section-contact">
+    <div class="container">
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <span class="section-tag">Get In Touch</span>
+                <h2>Start Your Project</h2>
+                <p>Ready to build? Contact us for a free consultation and quote.</p>
+                
+                <div class="contact-methods">
+                    <a href="tel:+27789685258" class="contact-method">
+                        <div class="method-icon"><i class="fas fa-phone"></i></div>
+                        <div class="method-details">
+                            <span>Call Us</span>
+                            <strong>+27 (78) 968-5258</strong>
+                        </div>
+                    </a>
+                    <a href="https://wa.me/27789685258" target="_blank" class="contact-method whatsapp">
+                        <div class="method-icon"><i class="fab fa-whatsapp"></i></div>
+                        <div class="method-details">
+                            <span>WhatsApp</span>
+                            <strong>+27 (78) 968-5258</strong>
+                        </div>
+                    </a>
+                    <a href="mailto:MzwakheKhumalo91@gmail.com" class="contact-method">
+                        <div class="method-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="method-details">
+                            <span>Email Us</span>
+                            <strong>MzwakheKhumalo91@gmail.com</strong>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-form-wrapper">
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+27 78 968 5258">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="project">Project Type</label>
+                        <select id="project" name="project_type">
+                            <option value="">Select a service...</option>
+                            <option value="concrete">Structural Concrete</option>
+                            <option value="roads">Road Construction</option>
+                            <option value="mining">Mining Infrastructure</option>
+                            <option value="earthworks">Bulk Earthworks</option>
+                            <option value="water">Water Treatment</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Project Details</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Tell us about your project..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-glow btn-full">
+                        <span>Send Message</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo-icon">M</div>
+                <h3>Motsomalo Holdings</h3>
+                <p>Building South Africa's infrastructure with excellence and integrity since 2009.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="#about">About Us</a>
+                <a href="#services">Services</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-links">
+                <h4>Services</h4>
+                <a href="#services">Concrete Construction</a>
+                <a href="#services">Road Works</a>
+                <a href="#services">Mining Infrastructure</a>
+                <a href="#services">Earthworks</a>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Info</h4>
+                <p><i class="fas fa-map-marker-alt"></i> 3331 Thandekile Dr, Kagiso</p>
+                <p><i class="fas fa-phone"></i> +27 (78) 968-5258</p>
+                <p><i class="fas fa-envelope"></i> MzwakheKhumalo91@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Motsomalo Holdings (PTY) LTD. Enterprise Number: 2022 / 330016 / 07</p>
+        </div>
+    </div>
 </footer>
 
+<!-- Floating Action Button -->
+<div class="fab-container">
+    <button class="fab-main" id="fabMain" aria-label="Contact options">
+        <i class="fas fa-plus"></i>
+    </button>
+    <div class="fab-options">
+        <a href="tel:+27789685258" class="fab-option" aria-label="Call">
+            <i class="fas fa-phone"></i>
+            <span>Call</span>
+        </a>
+        <a href="https://wa.me/27789685258" target="_blank" class="fab-option whatsapp" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+            <span>WhatsApp</span>
+        </a>
+        <a href="mailto:MzwakheKhumalo91@gmail.com" class="fab-option" aria-label="Email">
+            <i class="fas fa-envelope"></i>
+            <span>Email</span>
+        </a>
+    </div>
+</div>
+
+<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script src="script.js?v=34"></script>
+<script src="script.js?v=35"></script>
 
 </body>
 </html>
