@@ -57,7 +57,7 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: opacity 0.5s;
+    transition: opacity 0.5s ease;
 }
 
 .loader.hidden {
@@ -82,6 +82,7 @@ h1, h2, h3, h4, h5, h6 {
 nav {
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
     background: rgba(10, 10, 10, 0.95);
     backdrop-filter: blur(20px);
@@ -117,6 +118,8 @@ nav.scrolled {
     height: 50px;
     object-fit: contain;
     border-radius: 8px;
+    background: white;
+    padding: 5px;
 }
 
 .logo-text {
@@ -128,6 +131,7 @@ nav.scrolled {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 1.5rem;
     font-weight: 700;
+    color: var(--text);
 }
 
 .logo-subtitle {
@@ -142,6 +146,8 @@ nav.scrolled {
     gap: 2.5rem;
     list-style: none;
     align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-links a {
@@ -185,6 +191,7 @@ nav.scrolled {
     text-transform: uppercase;
     letter-spacing: 1px;
     font-size: 0.8rem;
+    font-family: inherit;
 }
 
 .nav-cta:hover {
@@ -198,6 +205,7 @@ nav.scrolled {
     font-size: 1.5rem;
     cursor: pointer;
     color: var(--text);
+    padding: 0.5rem;
 }
 
 /* Hero Section */
@@ -250,6 +258,7 @@ nav.scrolled {
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: center;
+    width: 100%;
 }
 
 .hero-badge {
@@ -278,6 +287,7 @@ nav.scrolled {
     background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .hero p {
@@ -308,6 +318,7 @@ nav.scrolled {
     cursor: pointer;
     font-size: 0.95rem;
     box-shadow: 0 0 30px var(--accent-glow);
+    font-family: inherit;
 }
 
 .btn-primary:hover {
@@ -329,6 +340,7 @@ nav.scrolled {
     border: 2px solid rgba(255, 255, 255, 0.2);
     cursor: pointer;
     font-size: 0.95rem;
+    font-family: inherit;
 }
 
 .btn-secondary:hover {
@@ -377,6 +389,7 @@ nav.scrolled {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
 }
 
 .hero-image-overlay {
@@ -391,13 +404,14 @@ nav.scrolled {
 
 .floating-card {
     position: absolute;
-    background: rgba(26, 26, 26, 0.9);
+    background: rgba(26, 26, 26, 0.95);
     backdrop-filter: blur(10px);
     padding: 1.5rem;
     border-radius: 16px;
     border: 1px solid rgba(0, 212, 255, 0.2);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     animation: float 6s ease-in-out infinite;
+    z-index: 10;
 }
 
 .floating-card:nth-child(2) {
@@ -433,6 +447,7 @@ nav.scrolled {
 .floating-card h4 {
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
+    color: var(--text);
 }
 
 .floating-card p {
@@ -470,6 +485,7 @@ section {
 .section-header h2 {
     font-size: 3rem;
     margin-bottom: 1rem;
+    color: var(--text);
 }
 
 .section-header p {
@@ -511,6 +527,7 @@ section {
 .about-content h3 {
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
+    color: var(--text);
 }
 
 .about-content p {
@@ -548,6 +565,7 @@ section {
 .about-feature h4 {
     font-size: 1rem;
     margin-bottom: 0.3rem;
+    color: var(--text);
 }
 
 .about-feature p {
@@ -567,6 +585,7 @@ section {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
 }
 
 .experience-badge {
@@ -579,6 +598,7 @@ section {
     border-radius: 20px;
     text-align: center;
     box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
+    z-index: 10;
 }
 
 .experience-badge .number {
@@ -657,6 +677,7 @@ section {
 .capability-card h3 {
     font-size: 1.3rem;
     margin-bottom: 1rem;
+    color: var(--text);
 }
 
 .capability-card p {
@@ -690,25 +711,28 @@ section {
 
 .projects-slider-container {
     position: relative;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    border-radius: 20px;
 }
 
 .projects-slider {
     display: flex;
-    overflow: hidden;
-    border-radius: 20px;
+    transition: transform 0.5s ease;
 }
 
 .project-slide {
     min-width: 100%;
     position: relative;
     height: 500px;
+    flex-shrink: 0;
 }
 
 .project-slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
 }
 
 .project-slide-overlay {
@@ -735,6 +759,7 @@ section {
 .project-slide-overlay h3 {
     font-size: 2rem;
     margin-bottom: 0.5rem;
+    color: var(--text);
 }
 
 .project-slide-overlay p {
@@ -779,7 +804,7 @@ section {
     display: flex;
     justify-content: center;
     gap: 0.5rem;
-    margin-bottom: 3rem;
+    flex-wrap: wrap;
 }
 
 .slider-dot {
@@ -794,34 +819,7 @@ section {
 .slider-dot.active {
     background: var(--accent);
     box-shadow: 0 0 10px var(--accent);
-}
-
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-}
-
-.project-thumb {
-    height: 150px;
-    border-radius: 10px;
-    overflow: hidden;
-    cursor: pointer;
-    opacity: 0.6;
-    transition: all 0.3s;
-    border: 2px solid transparent;
-}
-
-.project-thumb:hover,
-.project-thumb.active {
-    opacity: 1;
-    border-color: var(--accent);
-}
-
-.project-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    transform: scale(1.2);
 }
 
 /* Location */
@@ -835,6 +833,7 @@ section {
 .location-content h3 {
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
+    color: var(--text);
 }
 
 .location-info {
@@ -866,6 +865,7 @@ section {
 .location-item h4 {
     font-size: 1.1rem;
     margin-bottom: 0.3rem;
+    color: var(--text);
 }
 
 .location-item p {
@@ -907,11 +907,7 @@ section {
 .contact-form h3 {
     font-size: 2rem;
     margin-bottom: 1rem;
-}
-
-.contact-form > p {
-    color: var(--text-muted);
-    margin-bottom: 2rem;
+    color: var(--text);
 }
 
 .form-group {
@@ -947,6 +943,11 @@ section {
     box-shadow: 0 0 20px rgba(0, 212, 255, 0.1);
 }
 
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
 .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -958,11 +959,13 @@ section {
     border-radius: 20px;
     padding: 2.5rem;
     border: 1px solid rgba(0, 212, 255, 0.1);
+    height: fit-content;
 }
 
 .contact-info-panel h4 {
     font-size: 1.3rem;
     margin-bottom: 1.5rem;
+    color: var(--text);
 }
 
 .contact-method {
@@ -990,6 +993,7 @@ section {
     justify-content: center;
     color: var(--accent);
     font-size: 1.2rem;
+    flex-shrink: 0;
 }
 
 .contact-method h5 {
@@ -1058,10 +1062,13 @@ footer {
 .footer-section h4 {
     font-size: 1.1rem;
     margin-bottom: 1.5rem;
+    color: var(--text);
 }
 
 .footer-section ul {
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .footer-section ul li {
@@ -1143,7 +1150,7 @@ footer {
     color: var(--success);
 }
 
-/* Responsive */
+/* Mobile Navigation */
 @media (max-width: 1024px) {
     .hero-content,
     .about-grid,
@@ -1160,10 +1167,6 @@ footer {
         grid-template-columns: repeat(2, 1fr);
     }
     
-    .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
     .footer-content {
         grid-template-columns: 1fr 1fr;
     }
@@ -1172,10 +1175,33 @@ footer {
 @media (max-width: 768px) {
     .nav-links {
         display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 10, 10, 0.98);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.5rem;
+        border-top: 1px solid rgba(0, 212, 255, 0.1);
+    }
+    
+    .nav-links.active {
+        display: flex;
     }
     
     .mobile-menu {
         display: block;
+    }
+    
+    .nav-cta {
+        display: none;
+    }
+    
+    .hero {
+        padding-top: 80px;
+        min-height: auto;
+        padding-bottom: 4rem;
     }
     
     .hero h1 {
@@ -1184,11 +1210,15 @@ footer {
     
     .hero-stats {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
     
-    .capabilities-grid,
-    .projects-grid {
+    .capabilities-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .about-section {
+        padding: 2rem;
     }
     
     .about-features {
@@ -1199,17 +1229,43 @@ footer {
         grid-template-columns: 1fr;
     }
     
-    .footer-content {
-        grid-template-columns: 1fr;
+    .projects-section {
+        padding: 2rem;
     }
     
-    .experience-badge {
-        left: 20px;
-        bottom: 20px;
+    .project-slide {
+        height: 300px;
     }
     
     .slider-btn {
         width: 40px;
         height: 40px;
+    }
+    
+    .contact-section {
+        padding: 2rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .experience-badge {
+        left: 20px;
+        bottom: 20px;
+        padding: 1.5rem;
+    }
+    
+    .experience-badge .number {
+        font-size: 2rem;
+    }
+    
+    section {
+        padding: 4rem 5%;
+    }
+    
+    .floating-card {
+        display: none;
     }
 }
